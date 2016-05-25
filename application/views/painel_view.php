@@ -8,77 +8,6 @@
     {headerinc}
   </head>
   <body>
-  <div class="tiny reveal" id="programador" data-reveal>
-              <?php
-              echo '<div class="columns medium-12 medium-centered">';
-              echo form_open('usuarios/valida',array('class'=>'custom loginform'));
-              echo form_fieldset('Cadastro Programador',array('class' => 'fieldset'));
-              erros_validacao();
-              echo form_label('Nome Programador:');
-              echo form_input(array('name'=>'vnome____programador','placeholder'=>'Nome Programador'),
-                  set_value('vnome____programador'),'autofocus');
-              echo form_label('Login:');
-              echo form_input(array('name'=>'vlogin_programador','placeholder'=>'Login'),set_value('vlogin_programador'));
-              echo form_label('Senha:');
-              echo form_password(array('name'=>'vsenha_programador','placeholder'=>'Senha'),set_value('vsenha_programador'));
-              echo '<div class="row">';
-              echo '<div class="columns medium-5 text-justify">';
-              echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
-              echo '</div>';
-              echo '<div class="columns medium-7 text-right">';
-              echo form_button(array('name'=>'logar','class'=> 'button radius right'),'Cancelar','data-close');
-              echo '</div>';
-              echo '</div>';
-              echo form_fieldset_close();
-              echo '</div>';
-          ?>
-  </div>
-  <div class="tiny reveal" id="programas" data-reveal>
-      <?php
-      echo '<div class="columns medium-12 medium-centered">';
-      echo form_open('usuarios/valida',array('class'=>'custom loginform'));
-      echo form_fieldset('Cadastro Programas',array('class' => 'fieldset'));
-      erros_validacao();
-      echo form_label('Nome Programa:');
-      echo form_input(array('name'=>'vnome____programa','placeholder'=>'Nome Programa'),
-          set_value('vnome____programador'),'autofocus');
-      echo '<div class="row">';
-      echo '<div class="columns medium-5 text-left">';
-      echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
-      echo '</div>';
-      echo '<div class="columns medium-7 text-right">';
-      echo form_button(array('name'=>'logar','class'=> 'button radius right'),'Cancelar','data-close');
-      echo '</div>';
-      echo '</div>';
-      echo form_fieldset_close();
-      echo '</div>';
-      ?>
-  </div>
-  <div class="tiny reveal" id="status" data-reveal>
-      <?php
-      echo '<div class="columns medium-12 medium-centered">';
-      echo form_open('usuarios/valida',array('class'=>'custom loginform'));
-      echo form_fieldset('Cadastro Status',array('class' => 'fieldset'));
-      erros_validacao();
-      echo form_label('Status:');
-      echo form_input(array('name'=>'vnome____programa','placeholder'=>'Status'),
-          set_value('vnome____programador'),'autofocus');
-      echo '<div class="row">';
-      echo '<div class="columns medium-5 text-left">';
-      echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
-      echo '</div>';
-      echo '<div class="columns medium-7 text-right">';
-      echo form_button(array('name'=>'logar','class'=> 'button radius right'),'Cancelar','data-close');
-      echo '</div>';
-      echo '</div>';
-      echo form_fieldset_close();
-      echo '</div>';
-      ?>
-  </div>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
   <?php
         if(esta_logado(false)):;?>
       <div class="row">
@@ -147,6 +76,77 @@
 
   {conteudo}
   </div>
+  <div class="tiny reveal" id="programador" data-reveal>
+      <?php
+      echo '<div class="columns medium-12 medium-centered">';
+      echo form_open('',array('class'=>'custom loginform'));
+      echo form_fieldset('Cadastro Programador',array('class' => 'fieldset'));
+      erros_validacao();
+      echo form_label('Nome Programador:');
+      echo form_input(array('name'=>'vnome____programador','placeholder'=>'Nome Programador'),
+          set_value('vnome____programador'),'autofocus');
+      echo form_label('Login:');
+      echo form_input(array('name'=>'vlogin_programador','placeholder'=>'Login'),set_value('vlogin_programador'));
+      echo form_label('Senha:');
+      echo form_password(array('name'=>'vsenha_programador','placeholder'=>'Senha'),set_value('vsenha_programador'));
+      echo '<div class="row">';
+      echo '<div class="columns medium-5 text-justify">';
+      echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
+      echo '</div>';
+      echo '<div class="columns medium-7 text-right">';
+      echo form_button(array('name'=>'logar3','class'=> 'button radius right'),'Cancelar','data-close');
+      echo '</div>';
+      echo '</div>';
+      echo form_fieldset_close();
+      echo '</div>';
+      ?>
+  </div>
+  <div class="tiny reveal" id="programas" data-reveal>
+      <?php
+      echo '<div class="columns medium-12 medium-centered">';
+      echo form_open('',array('class'=>'custom loginform'));
+      echo form_fieldset('Cadastro Programas',array('class' => 'fieldset'));
+      erros_validacao();
+      echo form_label('Nome Programa:');
+      echo form_input(array('name'=>'vnome____programa','placeholder'=>'Nome Programa'),
+          set_value('vnome____programador'),'autofocus');
+      echo '<div class="row">';
+      echo '<div class="columns medium-5 text-left">';
+      echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
+      echo '</div>';
+      echo '<div class="columns medium-7 text-right">';
+      echo form_button(array('name'=>'logar2','class'=> 'button radius right'),'Cancelar','data-close');
+      echo '</div>';
+      echo '</div>';
+      echo form_fieldset_close();
+      echo '</div>';
+      ?>
+  </div>
+  <div class="tiny reveal" id="status" data-reveal>
+      <?php
+      echo '<div class="columns medium-12 medium-centered">';
+      echo form_open('',array('class'=>'custom loginform'));
+      echo form_fieldset('Cadastro Status',array('class' => 'fieldset'));
+      erros_validacao();
+      echo form_label('Status:');
+      echo form_input(array('name'=>'vnome____programa','placeholder'=>'Status'),
+          set_value('vnome____programador'),'autofocus');
+      echo '<div class="row">';
+      echo '<div class="columns medium-5 text-left">';
+      echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
+      echo '</div>';
+      echo '<div class="columns medium-7 text-right">';
+      echo form_button(array('name'=>'logar1','class'=> 'button radius right'),'Cancelar','data-close');
+      echo '</div>';
+      echo '</div>';
+      echo form_fieldset_close();
+      echo '</div>';
+      ?>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
   <script scr="js/foundation.min.js"></script>
   <div class="row rodape">
     <div ="columns medium-6 medium-centered">
@@ -154,5 +154,7 @@
     </div>
   </div>
   {footerinc}
+
   </body>
+
 </html>

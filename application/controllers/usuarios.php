@@ -20,7 +20,6 @@ class Usuarios extends  CI_Controller{
 
     //valida o login
     public function valida(){
-        echo 'teste';
         $this->form_validation->set_rules('usuario','USUÁRIO','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('senha','SENHA','trim|required|min_length[4]|strtolower');
         if($this->form_validation->run()):
@@ -41,7 +40,6 @@ class Usuarios extends  CI_Controller{
             endif;
         endif;
     }
-
     public function logar(){
         set_tema('titulo','Login');
         set_tema('conteudo',load_modulo('usuarios','login'));

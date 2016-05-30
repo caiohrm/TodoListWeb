@@ -1,4 +1,9 @@
 $(document).foundation();
+
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+
 $.ajax('painel/createUser')
     .done(function(resp){
         $("#programador").html(resp);

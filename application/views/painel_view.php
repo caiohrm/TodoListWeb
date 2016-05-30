@@ -70,7 +70,7 @@
             <div class="row">
                 <?php
                 $template = array(
-                    'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="mytable">'
+                    'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="mytable" id="myTable">'
                 );
                 $this->table->set_template($template);
                 $this->table->set_heading('Programador','Programa','Descrição','Status','Prazo');

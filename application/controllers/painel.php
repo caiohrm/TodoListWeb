@@ -28,15 +28,20 @@ class Painel extends  CI_Controller{
     public function salvaProgramador()
     {
         $data = array();
-            $this->form_validation->set_rules('vnome____programador','NOME','trim|required|min_length[4]|strtolower');
-        $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|is_unique[usuarios.login]');
+        $login = $_POST["vlogin_programador"];
+        $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]|strtolower');
+        $this->form_validation->set_message('is_unique', 'Error Message');
+        $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|'+
+        'is_unique[programador.vlogin_programador]');
         $this->form_validation->set_rules('vsenha_programador','SENHA','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('vsenha_programador1','REPITA A SENHA','trim|required|strtolower|matches[vsenha_programador]');
         if($this->form_validation->run()) {
-            $dados = elements(array('vnome____programador', 'vlogin_programador', 'vsenha_programador'), $this->input->post());
+            $dados = elements(array('vnome__programador', 'vlogin_programador', 'vsenha_programador'), $this->input->post());
             $dados['vsenha_programador'] = md5($dados['vsenha_programador']);
             $this->usuarios->insert_user($dados);
             $data['success'] = true;
+            $row =$this->usuarios->get_bylogin($login)->row();
+            $data['message'] = array($row->nid____programador,$row->vnome__programador);
         }else
         {
             $this->output->enable_profiler(false);

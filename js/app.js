@@ -32,11 +32,17 @@ $(document).on('closed.zf.reveal','[data-reveal]',function () {
 
 
 function salvaProgramador() {
-    //$("#erros").html('').innerHTML="";
+
+    var nome = $("#vnome__programador").val();
+    var login = $("#vlogin_programador").val();
+    var senha = $("#vsenha_programador").val();
+    var repitasenha = $("#vsenha_programador1").val();
+    alert('nome:'+ nome + ' login:'+login + ' senha: ' +senha +' repita: '+repitasenha);
     $.ajax({
             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url         : 'painel/salvaProgramador', // the url where we want to POST
             dataType    : 'json', // what type of data do we expect back from the server
+            data: {vnome__programador:nome,vlogin_programador:login,vsenha_programador:senha,vsenha_programador1:repitasenha},
             encode          : true,
         })
         // using the done promise callback
@@ -44,8 +50,16 @@ function salvaProgramador() {
             // log data to the console so we can see
             console.log(data);
             if(!data.success) {
-                alert('aqui');
                 $("#erros").html('').append("<div class='alert callout'>" + data.message + "</div>");
+            }
+            else {
+                $("#erros").html('').append("<div class='callout success'>Programador  adicionado com succeso</div>");
+                var select = document.getElementsByName("usuario");
+                var option = document.createElement("option");
+                option.text =data.message[1];
+                option.value = data.message[0];
+                select[0].options.add(option);
+                console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
         });

@@ -13,14 +13,14 @@ switch ($tela):
         echo form_fieldset('Cadastro Programador',array('class' => 'fieldset'));
         echo validation_errors('<p>','</p>');
         echo form_label('Nome Programador:');
-        echo form_input(array('name'=>'vnome____programador','placeholder'=>'Nome Programador'),
-            set_value('vnome____programador'),'autofocus');
+        echo form_input(array('id'=>'vnome__programador','name'=>'vnome__programador','placeholder'=>'Nome Programador'),
+            set_value('vnome__programador'),'autofocus');
         echo form_label('Login:');
-        echo form_input(array('name'=>'vlogin_programador','placeholder'=>'Login'),set_value('vlogin_programador'));
+        echo form_input(array('id'=>'vlogin_programador','placeholder'=>'Login'),set_value('vlogin_programador'));
         echo form_label('Senha:');
-        echo form_password(array('name'=>'vsenha_programador','placeholder'=>'Senha'),set_value('vsenha_programador'));
+        echo form_password(array('id'=>'vsenha_programador','placeholder'=>'Senha'),set_value('vsenha_programador'));
         echo form_label('Repita Senha:');
-        echo form_password(array('name'=>'vsenha_programador1','placeholder'=>'Repita Senha'));
+        echo form_password(array('id'=>'vsenha_programador1','placeholder'=>'Repita Senha'));
         echo '<div class="row">';
         echo '<div class="columns medium-5 text-justify">';
         echo form_button(array('id'=>'saveprog','class'=> 'button radius right','onclick'=>'salvaProgramador()'),'Cadastrar');

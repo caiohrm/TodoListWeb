@@ -49,7 +49,7 @@ public function do_login($usuario=NULL,$senha=NULL){
     public function insert_user($dados=NULL)
     {
         if($dados!= NULL):
-            $this->db->insert('usuarios',$dados);
+            $this->db->insert('programador',$dados);
             $this->session->set_flashdata('cadastrook','Cadastro efetuado com sucesso');
         endif;
     }

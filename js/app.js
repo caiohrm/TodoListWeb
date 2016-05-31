@@ -2,6 +2,17 @@ $(document).foundation();
 
 $(document).ready(function(){
     $('#myTable').DataTable();
+    var table = $('#myTable').DataTable();
+
+    $('#myTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
 });
 $.ajax('painel/creatActivity')
     .done(function(resp){

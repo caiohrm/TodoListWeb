@@ -11,7 +11,6 @@ switch ($tela):
         echo '<div class="columns medium-12 medium-centered" id="erros"></div>';
         //echo form_open('',array('name'=>'teste','class'=>'custom','onsubmit'=>'teste()'));
         echo form_fieldset('Cadastro Programador',array('class' => 'fieldset'));
-        echo validation_errors('<p>','</p>');
         echo form_label('Nome Programador:');
         echo form_input(array('id'=>'vnome__programador','name'=>'vnome__programador','placeholder'=>'Nome Programador'),
             set_value('vnome__programador'),'autofocus');
@@ -36,9 +35,8 @@ switch ($tela):
         echo '<div class="columns medium-12 medium-centered">';
         echo '<div class="columns medium-12 medium-centered" id="errosa"></div>';
         echo form_fieldset('Cadastro Programas',array('class' => 'fieldset'));
-        erros_validacao();
         echo form_label('Nome Programa:');
-        echo form_input(array('name'=>'nomeprograma','placeholder'=>'Nome Programa'),
+        echo form_input(array('id'=>'vnome____programa','placeholder'=>'Nome Programa'),
             set_value('vnome____programa'),'autofocus');
         echo '<div class="row">';
         echo '<div class="columns medium-5 text-left">';
@@ -53,14 +51,14 @@ switch ($tela):
         break;
     case 'status':
         echo '<div class="columns medium-12 medium-centered">';
+        echo '<div class="columns medium-12 medium-centered" id="erross"></div>';
         echo form_fieldset('Cadastro Status',array('class' => 'fieldset'));
-        erros_validacao();
         echo form_label('Status:');
-        echo form_input(array('name'=>'vnome____programa','placeholder'=>'Status'),
+        echo form_input(array('id'=>'vdescristatus','placeholder'=>'Status'),
             set_value('status'),'autofocus');
         echo '<div class="row">';
         echo '<div class="columns medium-5 text-left">';
-        echo form_button(array('name'=>'logar','class'=> 'button radius right'),'Cadastrar');
+        echo form_button(array('name'=>'status','class'=> 'button radius right','onclick'=>'salvaStatus()'),'Cadastrar');
         echo '</div>';
         echo '<div class="columns medium-7 text-right">';
         echo form_button(array('name'=>'logar1','class'=> 'button radius right'),'Cancelar','data-close');

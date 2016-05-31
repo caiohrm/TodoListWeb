@@ -54,18 +54,47 @@ class Painel extends  CI_Controller{
     public function salvaPrograma()
     {
         $data = array();
-        $this->form_validation->set_rules('nomeprograma','nomeprograma','trim|required|min_length[4]|strtolower');
+        $this->form_validation->set_rules('vnome____programa','Nome Programa','trim|required|min_length[4]|strtolower');
         if($this->form_validation->run()) {
-            $dados = elements(array('nomeprograma'), $this->input->post());
+            $dados = elements(array('vnome____programa'), $this->input->post());
             $this->usuarios->insert_program($dados);
             $data['success'] = true;
+            $valores =$this->usuarios->get_programas()->result();
+            $dados = array();
+            foreach ($valores as $row) {
+                $dados = array_merge($dados,array($row->nid____programa=>$row->vnome____programa));
+            }
+            $data['message'] = $dados;
         }else
         {
             $this->output->enable_profiler(false);
             $data['success'] = false;
             $data['message'] = validation_errors();
         }
-        echo json_encode($dados);
+        echo json_encode($data);
+    }
+
+    public function salvaStatus()
+    {
+        $data = array();
+        $this->form_validation->set_rules('vdescristatus','Status','trim|required|min_length[4]|strtolower');
+        if($this->form_validation->run()) {
+            $dados = elements(array('vdescristatus'), $this->input->post());
+            $this->usuarios->insert_status($dados);
+            $data['success'] = true;
+            $valores =$this->usuarios->get_situac()->result();
+            $dados = array();
+            foreach ($valores as $row) {
+                $dados = array_merge($dados,array($row->nid____status=>$row->vdescristatus));
+            }
+            $data['message'] = $dados;
+        }else
+        {
+            $this->output->enable_profiler(false);
+            $data['success'] = false;
+            $data['message'] = validation_errors();
+        }
+        echo json_encode($data);
     }
 
     public function createProgramas(){

@@ -88,7 +88,7 @@ public function do_login($usuario=NULL,$senha=NULL){
                                         'vdescritodolist, '.
                                         'vnome____programa, '.
                                         'vnome__programador,'.
-                                        'dprazo_todolist,'.
+                                        'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
                                         'stu.vdescristatus,'.
                                         'nstate_todolist '.
                                 'FROM todolist AS todo, '.

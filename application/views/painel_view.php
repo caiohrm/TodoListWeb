@@ -13,16 +13,8 @@
             <div class="tiny reveal" id="programador" data-reveal></div>
             <div class="tiny reveal" id="programas" data-reveal></div>
             <div class="tiny reveal" id="status" data-reveal></div>
-            <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <script scr="js/foundation.min.js"></script>
-            <div class="row rodape">
-                <div ="columns medium-6 medium-centered">
-                {rodape}
-            </div>
-            </div>
+            <div class="large reveal" id="atividade" data-reveal></div>
+
       <div class="row">
         <div class="columns medium-6 text-center">
           <a href="<?php echo base_url('painel'); ?>" class="teste"><h1>Tarefas</h1></a>
@@ -33,37 +25,50 @@
       </div>
       <div class="row">
           <div class="columns medium-12 text-left">
-              <div class="columns medium-4 text-left">
-
-                  <?php
-                      $data= array();
-                      foreach ($users as $row):$data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));endforeach;
-                      echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'programador',
-                          'onclick'=>'clear()'),'+');
-                  ?>
-                  <div class="columns medium-10 text-left">
+              <div class="columns medium-3 text-left">
+                  <div class="columns medium-4 align-left">
+                      <?php
+                          $data= array();
+                          foreach ($users as $row){
+                              $data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));
+                          }
+                          echo form_button(array('name'=>'logar','class'=> 'button radius float-left',
+                              'data-open'=>'programador'),'+');
+                      ?>
+                  </div>
+                  <div class="columns medium-8 text-left">
                       <?php echo  form_dropdown('usuario',$data,01); ?>
                   </div>
               </div>
-              <div class="columns medium-4 text-left">
-                  <?php
-                      $data= array();
-                      foreach ($programas as $row):$data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));endforeach;
-                      echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'programas'),'+');
-                  ?>
-                  <div class="columns medium-10 text-left">
+              <div class="columns medium-3 text-left">
+                  <div class="columns medium-3 text-left">
+                      <?php
+                          $data= array();
+                          foreach ($programas as $row)
+                          {
+                              $data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));
+                          }
+                          echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'programas'),'+');
+                      ?>
+                  </div>
+                  <div class="columns medium-9 text-left">
                       <?php echo form_dropdown('programas',$data,01); ?>
                   </div>
               </div>
-              <div class="columns medium-4 text-left">
-                  <?php
-                  $data= array();
-                  foreach ($situacao as $row):$data = array_merge($data,array($row->nid____status =>$row->vdescristatus));endforeach;
-                  echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'status'),'+');
-                  ?>
-                  <div class="columns medium-10 text-left">
-                      <?php echo form_dropdown('situacao',$data,01);; ?>
+              <div class="columns medium-3 text-right">
+                  <div class="columns medium-2 text-left">
+                      <?php
+                      $data= array();
+                      foreach ($situacao as $row):$data = array_merge($data,array($row->nid____status =>$row->vdescristatus));endforeach;
+                      echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'status'),'+');
+                      ?>
                   </div>
+                  <div class="columns medium-10 text-center">
+                      <?php echo form_dropdown('situacao',$data,01); ?>
+                  </div>
+              </div>
+              <div class="columns medium-2 text-right">
+                 <?php echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'atividade'),'Criar Atividade');?>
               </div>
           </div>
       </div>
@@ -91,7 +96,11 @@
   {conteudo}
   </div>
   {footerinc}
-
+  <script scr="js/foundation.min.js"></script>
+  <div class="row rodape">
+      <div ="columns medium-6 medium-centered">
+      {rodape}
+  </div>
   </body>
 
 </html>

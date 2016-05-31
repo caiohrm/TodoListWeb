@@ -25,6 +25,43 @@ class Painel extends  CI_Controller{
         load_template();
     }
 
+    public function creatActivity()
+    {
+        $usuario = $this->usuarios->get_users()->result();
+        $programa = $this->usuarios->get_programas()->result();
+        $situacao = $this->usuarios->get_situac()->result();
+        set_tema('users',$usuario);
+        set_tema('programas',$programa);
+        set_tema('situacao',$situacao);
+        set_tema('template','reveal');
+        set_tema('tela','atividade');
+        load_template();
+    }
+
+    public function salvaAtividade()
+    {
+        $data = array();
+        $this->form_validation->set_rules('vtitulotodolist','NOME','trim|required|min_length[4]|strtolower');
+        $this->form_validation->set_rules('vdescritodolist','NOME','trim|required|min_length[4]|strtolower');
+        if($this->form_validation->run()) {
+            $dados = elements(array('nid____programador',
+                                    'nid____programa',
+                                    'nstate_todolist',
+                                    'dprazo_todolist',
+                                    'vtitulotodolist',
+                                    'vdescritodolist'), $this->input->post());
+            $this->usuarios->insert_atividade($dados);
+            $data['success'] = true;
+        }else
+        {
+            $this->output->enable_profiler(false);
+            $data['success'] = false;
+            $data['message'] = validation_errors();
+        }
+        echo json_encode($data);
+
+
+    }
     public function salvaProgramador()
     {
         $data = array();

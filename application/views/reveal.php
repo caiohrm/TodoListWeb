@@ -20,13 +20,9 @@ switch ($tela):
         echo form_password(array('id'=>'vsenha_programador','placeholder'=>'Senha'),set_value('vsenha_programador'));
         echo form_label('Repita Senha:');
         echo form_password(array('id'=>'vsenha_programador1','placeholder'=>'Repita Senha'));
-        echo '<div class="row">';
-        echo '<div class="columns medium-5 text-justify">';
-        echo form_button(array('id'=>'saveprog','class'=> 'button radius right','onclick'=>'salvaProgramador()'),'Cadastrar');
-        echo '</div>';
-        echo '<div class="columns medium-7 text-right">';
-        echo form_button(array('name'=>'exit','class'=> 'button radius right'),'Cancelar','data-close');
-        echo '</div>';
+        echo '<div class="expanded button-group">';
+        echo form_button(array('id'=>'saveprog','class'=> 'button left','onclick'=>'salvaProgramador()'),'Cadastrar');
+        echo form_button(array('name'=>'exit','class'=> 'alert button'),'Cancelar','data-close');
         echo '</div>';
         echo form_fieldset_close();
         echo '</div>';
@@ -38,13 +34,9 @@ switch ($tela):
         echo form_label('Nome Programa:');
         echo form_input(array('id'=>'vnome____programa','placeholder'=>'Nome Programa'),
             set_value('vnome____programa'),'autofocus');
-        echo '<div class="row">';
-        echo '<div class="columns medium-5 text-left">';
-        echo form_button(array('name'=>'logar','class'=> 'button radius right','onclick'=>'salvaPrograma()'),'Cadastrar');
-        echo '</div>';
-        echo '<div class="columns medium-7 text-right">';
-        echo form_button(array('name'=>'logar2','class'=> 'button radius right'),'Cancelar','data-close');
-        echo '</div>';
+        echo '<div class="expanded button-group">';
+        echo form_button(array('name'=>'logar','class'=> 'button ','onclick'=>'salvaPrograma()'),'Cadastrar');
+        echo form_button(array('name'=>'logar2','class'=> 'alert button'),'Cancelar','data-close');
         echo '</div>';
         echo form_fieldset_close();
         echo '</div>';
@@ -56,16 +48,65 @@ switch ($tela):
         echo form_label('Status:');
         echo form_input(array('id'=>'vdescristatus','placeholder'=>'Status'),
             set_value('status'),'autofocus');
-        echo '<div class="row">';
-        echo '<div class="columns medium-5 text-left">';
-        echo form_button(array('name'=>'status','class'=> 'button radius right','onclick'=>'salvaStatus()'),'Cadastrar');
-        echo '</div>';
-        echo '<div class="columns medium-7 text-right">';
-        echo form_button(array('name'=>'logar1','class'=> 'button radius right'),'Cancelar','data-close');
-        echo '</div>';
+        echo '<div class="expanded button-group">';
+        echo form_button(array('name'=>'status','class'=> 'button','onclick'=>'salvaStatus()'),'Cadastrar');
+        echo form_button(array('name'=>'logar1','class'=> 'alert button'),'Cancelar','data-close');
         echo '</div>';
         echo form_fieldset_close();
         echo '</div>';
+        break;
+    case 'atividade':
+        echo '<div class="columns medium-12 medium-centered">';
+        echo '<div class="columns medium-12 medium-centered" id="errossa"></div>';
+        echo form_fieldset('Cadastro Atividade',array('class' => 'fieldset'));
+        echo '<div class="row">';
+        echo '<div class="columns medium-12 text-left">';
+        echo '<div class="columns medium-3 text-left">';
+        $data= array();
+        foreach ($users as $row){
+            $data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));
+        }
+        echo form_label('Programador:');
+        echo  form_dropdown('nid____programador',$data,01);
+        echo '</div>';
+        echo '<div class="columns medium-3 text-left">';
+        $data= array();
+        foreach ($programas as $row){
+            $data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));
+        }
+        echo form_label('Programa:');
+        echo form_dropdown('nid____programa',$data,01);
+        echo '</div>';
+        echo '<div class="columns medium-3 text-left">';
+        $data= array();
+        foreach ($situacao as $row) {
+            $data = array_merge($data, array($row->nid____status => $row->vdescristatus));
+        }
+        echo form_label('Situação:');
+        echo form_dropdown('nstate_todolist',$data,01);
+        echo '</div>';
+        echo '<div class="columns medium-3 text-left">';
+        echo form_label('Prazo:');
+        echo '<input type="date" id="dprazo_todolist" name="bday">';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="row">';
+        echo '<div class="columns medium-12 text-left">';
+        echo form_label('Título:');
+        echo form_input(array('id'=>'vtitulotodolist','placeholder'=>'Título'),set_value('titulo'));
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="row">';
+        echo '<div class="columns medium-12 text-left">';
+        echo form_label('Descrição:');
+        echo form_textarea(array('id'=>'vdescritodolist','placeholder'=>'Descrição'),set_value('titulo'));
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="expanded button-group">';
+        echo form_button(array('name'=>'status','class'=> 'button','onclick'=>'salvaAtividade()'),'Cadastrar');
+        echo form_button(array('name'=>'logar1','class'=> 'alert button'),'Cancelar','data-close');
+        echo '</div>';
+        echo form_fieldset_close();
         break;
     default:
         echo '<div class="Alert-box alert"><p>A tela solicitada não existe</p></div>';

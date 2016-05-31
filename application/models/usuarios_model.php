@@ -62,6 +62,14 @@ public function do_login($usuario=NULL,$senha=NULL){
         endif;
     }
 
+    public function insert_atividade($dados=NULL)
+    {
+        if($dados!= NULL):
+            $this->db->insert('todolist',$dados);
+            $this->session->set_flashdata('cadastrook','Cadastro efetuado com sucesso');
+        endif;
+    }
+
     public function insert_status($dados=NULL){
         if($dados!= NULL):
             $this->db->insert('status',$dados);

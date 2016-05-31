@@ -3,13 +3,14 @@ $(document).foundation();
 $(document).ready(function(){
     $('#myTable').DataTable();
 });
+$.ajax('painel/creatActivity')
+    .done(function(resp){
+        $("#atividade").html(resp);
+    });
 
 $.ajax('painel/createUser')
     .done(function(resp){
         $("#programador").html(resp);
-        $('#saveprog').onclick= function(){
-            alert('oi');
-        }
     });
 $.ajax('painel/createProgramas')
     .done(function(resp){
@@ -19,11 +20,6 @@ $.ajax('painel/createStatus')
     .done(function(resp){
         $("#status").html(resp);
     });
-
-function clear() {
-    alert('oi');
-    $("#erros").html('').innerHTML="";
-}
 
 $(document).on('closed.zf.reveal','[data-reveal]',function () {
     $("#erros").html('').innerHTML="";
@@ -77,13 +73,14 @@ function salvaProgramador() {
 }
 
 function LimpaCampos() {
-    var input=  document.getElementsByTagName('input');
+    Limpa(document.getElementsByTagName('input'));
+    Limpa(document.getElementsByTagName('textarea'));
+}
+
+function Limpa(input) {
     var length =  input.length;
     for(i=0;i<length;i++){
-        if(input[i].type=="text")
-        {
             input[i].value="";
-        }
     }
 }
 
@@ -144,9 +141,7 @@ function salvaStatus() {
             // log data to the console so we can see
             console.log(data);
             if(!data.success) {
-                console.log("passou aqui");
                 $("#erross").html('').append("<div class='alert callout'>" + data.message + "</div>");
-                console.log("passou aqui tbm");
             }
             else {
                 $("#erross").html('').append("<div class='callout success'>Status adicionado com succeso</div>");
@@ -163,6 +158,44 @@ function salvaStatus() {
                     option.value = data.message[i];
                     select[0].options.add(option);
                 }
+                console.log("adicionado com sucesso");
+            }
+            // here we will handle errors and validation messages
+        });
+}
+
+function salvaAtividade() {
+
+    var usuario = $("[name='nid____programador']").val();
+    var programas = $("[name='nid____programa']").val();
+    var situacao = $("[name='nstate_todolist']").val();
+    var datetime = $("#dprazo_todolist").val();
+    var titulo = $("#vtitulotodolist").val();
+    var descricao = $("#vdescritodolist").val();
+    $.ajax({
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'painel/salvaAtividade', // the url where we want to POST
+        dataType    : 'json', // what type of data do we expect back from the server
+        data: {
+               nid____programador:usuario,
+               nid____programa:programas,
+               nstate_todolist:situacao,
+               dprazo_todolist:datetime,
+               vtitulotodolist:titulo,
+               vdescritodolist:descricao
+        },
+        encode      : true
+    })
+    // using the done promise callback
+        .done(function(data) {
+            // log data to the console so we can see
+            console.log(data);
+            if(!data.success) {
+                $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
+            }
+            else {
+                $("#errossa").html('').append("<div class='callout success'>Atividade adicionada com succeso</div>");
+                LimpaCampos();
                 console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages

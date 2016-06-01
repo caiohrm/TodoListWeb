@@ -161,7 +161,7 @@ class Painel extends  CI_Controller{
             set_tema('conteudo','');
             load_template();
         else:
-        redirect('login');
+        redirect('usuarios/login');
         endif;
     }
 

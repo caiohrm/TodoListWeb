@@ -88,7 +88,8 @@ public function do_login($usuario=NULL,$senha=NULL){
                                         'vdescritodolist, '.
                                         'vnome____programa, '.
                                         'vnome__programador,'.
-                                        'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\') as dprazo_todolist'.
+                                        'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\')'.
+                                        //'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
                                         'stu.vdescristatus,'.
                                         'nstate_todolist '.
                                 'FROM todolist AS todo, '.
@@ -102,7 +103,7 @@ public function do_login($usuario=NULL,$senha=NULL){
                                         'pro.nid____programador = todo.nid____programador AND '.
                                         'todo.nid____programa=grama.nid____programa AND '.
                                         'todo.nstate_todolist=stu.nid____status '.
-                                        'order by nid____programador');
+                                        'order by nid____programador,dprazo_todolist');
     }
 
 

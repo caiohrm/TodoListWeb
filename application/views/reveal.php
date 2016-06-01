@@ -87,7 +87,7 @@ switch ($tela):
         echo '</div>';
         echo '<div class="columns medium-3 text-left">';
         echo form_label('Prazo:');
-        echo '<input type="date" id="dprazo_todolist" name="bday">';
+        echo '<input type="date" id="dprazo_todolist" name="bday" value="'.date("Y-m-d").'">';
         echo '</div>';
         echo '</div>';
         echo '<div class="row">';

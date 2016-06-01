@@ -1,10 +1,10 @@
 $(document).foundation();
 
 $(document).ready(function(){
-    $('#myTable').DataTable();
-    var table = $('#myTable').DataTable();
 
-    $('#myTable tbody').on( 'click', 'tr', function () {
+    var table =  $('#myTable').DataTable();
+
+    $('#myTable').find('tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -36,13 +36,10 @@ $(document).on('closed.zf.reveal','[data-reveal]',function () {
     $("#erros").html('').innerHTML="";
     $("#errosa").html('').innerHTML="";
     $("#erross").html('').innerHTML="";
-    var inputs = document.getElementsByTagName('input');
-    for(var i=0; i<inputs.length; i++){
-        if(inputs[i].getAttribute('type')=='text' || inputs[i].getAttribute('type')=='password'){
-            inputs[i].value = '';
-        }
-    }
-})
+    $("#errossa").html('').innerHTML="";
+
+    LimpaCampos();
+});
 
 
 function salvaProgramador() {
@@ -68,11 +65,8 @@ function salvaProgramador() {
             else {
                 $("#erros").html('').append("<div class='callout success'>Programador  adicionado com succeso</div>");
                 var select = document.getElementsByName("usuario");
-                var option = document.createElement("option");
-                option.text =data.message[1];
-                option.value = data.message[0];
-                select[0].options.add(option);
-                console.log("adicionado com sucesso");
+                removeCampos(select);
+                adiciona(data.message,select);
                 LimpaCampos();
             }
             // here we will handle errors and validation messages
@@ -90,11 +84,30 @@ function LimpaCampos() {
 
 function Limpa(input) {
     var length =  input.length;
-    for(i=0;i<length;i++){
+    for(var i=0;i<length;i++){
             input[i].value="";
     }
 }
 
+
+function removeCampos(select) {
+    var length =  select[0].options.length;
+    for(var i=length;i>= 0;i--){
+        select[0].remove(i);
+    }
+}
+
+function adiciona(data,select) {
+    length = data.length;
+    console.log(data);
+    for(var i=0;i< length;i++){
+        var option = document.createElement("option");
+        option.text =data[i][1];
+        option.value = data[i][0];
+        select[0].options.add(option);
+    }
+
+}
 function salvaPrograma() {
     //$("#erros").html('').innerHTML="";
     var nome = $("#vnome____programa").val();
@@ -118,17 +131,8 @@ function salvaPrograma() {
                 $("#errosa").html('').append("<div class='callout success'>Programa adicionado com succeso</div>");
                 LimpaCampos();
                 var select = document.getElementsByName("programas");
-                var length =  select[0].options.length;
-                for(i=length;i>= 0;i--){
-                    select[0].remove(i);
-                }
-                length = data.message.length;
-                for(i=0;i< length;i++){
-                    var option = document.createElement("option");
-                    option.text =data.message[i];
-                    option.value = data.message[i];
-                    select[0].options.add(option);
-                }
+                removeCampos(select);
+                adiciona(data.message,select);
                 console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
@@ -158,17 +162,8 @@ function salvaStatus() {
                 $("#erross").html('').append("<div class='callout success'>Status adicionado com succeso</div>");
                 LimpaCampos();
                 var select = document.getElementsByName("situacao");
-                var length =  select[0].options.length;
-                for(i=length;i>= 0;i--){
-                    select[0].remove(i);
-                }
-                length = data.message.length;
-                for(i=0;i< length;i++){
-                    var option = document.createElement("option");
-                    option.text =data.message[i];
-                    option.value = data.message[i];
-                    select[0].options.add(option);
-                }
+                removeCampos(select);
+                adiciona(data.message,select);
                 console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
@@ -201,14 +196,53 @@ function salvaAtividade() {
         .done(function(data) {
             // log data to the console so we can see
             console.log(data);
-            if(!data.success) {
-                $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
-            }
-            else {
+            if (data.success) {
                 $("#errossa").html('').append("<div class='callout success'>Atividade adicionada com succeso</div>");
                 LimpaCampos();
+                var table = $('#myTable').DataTable();
+                table.clear().draw();
+                var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                // Insert a row in the table at the last row
+
+                var length = data.message.length;
+                alert(length);
+                for (var i = 0; i < length; i++) {
+
+                    table.row.add(data.message[i]).draw(false);
+
+                }
+
                 console.log("adicionado com sucesso");
+            } else {
+                $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }
             // here we will handle errors and validation messages
         });
 }
+
+function CarregaAtividade() {
+    $.ajax({
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'painel/Carredados', // the url where we want to POST
+        dataType    : 'json', // what type of data do we expect back from the server
+        encode      : true
+    })
+    // using the done promise callback
+        .done(function(data) {
+            var select = document.getElementsByName("nid____programador");
+            removeCampos(select);
+            adiciona(data.programador,select);
+            var select = document.getElementsByName("nid____programa");
+            removeCampos(select);
+            adiciona(data.programa,select);
+            var select = document.getElementsByName("nstate_todolist");
+            removeCampos(select);
+            adiciona(data.situacao,select);
+            $('#atividade').foundation('open');
+        });
+
+
+}
+
+
+//,'data-open'=>'atividade'

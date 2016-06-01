@@ -51,6 +51,16 @@ class Painel extends  CI_Controller{
                                     'vtitulotodolist',
                                     'vdescritodolist'), $this->input->post());
             $this->usuarios->insert_atividade($dados);
+            $dados = array();
+            $valores=  $this->usuarios->get_tarefas()->result();
+            foreach ($valores as $linha) {
+                $dados[] = array($linha->vnome__programador,
+                                        $linha->vnome____programa,
+                                        $linha->vtitulotodolist,
+                                        $linha->vdescristatus,
+                                        $linha->dprazo_todolist);
+            }
+            $data['message'] =$dados;
             $data['success'] = true;
         }else
         {
@@ -68,7 +78,7 @@ class Painel extends  CI_Controller{
         $login = $_POST["vlogin_programador"];
         $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_message('is_unique', 'Error Message');
-        $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|'+
+        $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|' .
         'is_unique[programador.vlogin_programador]');
         $this->form_validation->set_rules('vsenha_programador','SENHA','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('vsenha_programador1','REPITA A SENHA','trim|required|strtolower|matches[vsenha_programador]');
@@ -99,7 +109,7 @@ class Painel extends  CI_Controller{
             $valores =$this->usuarios->get_programas()->result();
             $dados = array();
             foreach ($valores as $row) {
-                $dados = array_merge($dados,array($row->nid____programa=>$row->vnome____programa));
+                $dados[] = array($row->nid____programa,$row->vnome____programa);
             }
             $data['message'] = $dados;
         }else
@@ -122,7 +132,7 @@ class Painel extends  CI_Controller{
             $valores =$this->usuarios->get_situac()->result();
             $dados = array();
             foreach ($valores as $row) {
-                $dados = array_merge($dados,array($row->nid____status=>$row->vdescristatus));
+                $dados[] = array($row->nid____status,$row->vdescristatus);
             }
             $data['message'] = $dados;
         }else
@@ -145,6 +155,31 @@ class Painel extends  CI_Controller{
         load_template();
     }
 
+    public function Carredados(){
+        $data = array();
+        $dados = array();
+        $valores =$this->usuarios->get_situac()->result();
+        foreach ($valores as $row) {
+            $dados[] = array($row->nid____status,$row->vdescristatus);
+        }
+        $data['situacao'] = $dados ;
+
+        $dados = array();
+        $valores =$this->usuarios->get_programas()->result();
+        foreach ($valores as $row) {
+            $dados[] = array($row->nid____programa,$row->vnome____programa);
+        }
+        $data['programa'] =$dados;
+
+
+        $dados = array();
+        $valores =$this->usuarios->get_users()->result();
+        foreach ($valores as $row) {
+            $dados[] = array($row->nid____programador,$row->vnome__programador);
+        }
+        $data['programador'] = $dados;
+        echo json_encode($data);
+    }
     
     public function inicio(){
         if(esta_logado(false)):

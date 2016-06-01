@@ -61,7 +61,7 @@ if(esta_logado(false)):;?>
             <?php echo form_dropdown('situacao',$data,01); ?>
         </div>
         <div class="columns medium-2 text-right">
-            <?php echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'atividade'),'Criar Atividade');?>
+            <?php echo form_button(array('name'=>'logar','class'=> 'button radius right','onclick'=>'CarregaAtividade()'),'Criar Atividade');?>
         </div>
     </div>
     </div>

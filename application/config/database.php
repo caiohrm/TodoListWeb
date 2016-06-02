@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'todoweb',
-	'dbdriver' => 'mysqli',
+	'hostname' => '192.168.10.200',
+	'username' => 'postgres',
+	'password' => 'base',
+	'database' => 'PgToDoList',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

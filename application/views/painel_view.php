@@ -26,39 +26,28 @@ if(esta_logado(false)):;?>
     <div class="row medium-uncollapse large-collapse">
         <div class="columns medium-1 text-center">
             <?php
-            $data= array();
-            foreach ($users as $row){
-                $data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));
-            }
             echo form_button(array('name'=>'logar','class'=> 'button radius float-left',
                 'data-open'=>'programador'),'+');
             ?>
         </div>
         <div class="columns medium-2 text-left">
-            <?php echo  form_dropdown('programador',$data,01); ?>
+            <?php echo  form_dropdown('programador',null,01,'onChange=CarregaDatabase()'); ?>
         </div>
         <div class="columns medium-1 text-center">
             <?php
-            $data= array();
-            foreach ($programas as $row)
-            {
-                $data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));
-            }
             echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'programas'),'+');
             ?>
         </div>
         <div class="columns medium-2 text-left">
-            <?php echo form_dropdown('programas',$data,01); ?>
+            <?php echo form_dropdown('programas',null,01,'onChange=CarregaDatabase()'); ?>
         </div>
         <div class="columns medium-1 text-center">
             <?php
-            $data= array();
-            foreach ($situacao as $row):$data = array_merge($data,array($row->nid____status =>$row->vdescristatus));endforeach;
             echo form_button(array('name'=>'logar','class'=> 'button radius right','data-open'=>'status'),'+');
             ?>
         </div>
         <div class="columns medium-2 text-center">
-            <?php echo form_dropdown('situacao',$data,01,'onChange=CarregaDatabase()'); ?>
+            <?php echo form_dropdown('situacao',null,01,'onChange=CarregaDatabase()'); ?>
         </div>
         <div class="columns medium-2 text-right">
             <?php echo form_button(array('name'=>'logar','class'=> 'button radius right','onclick'=>'CarregaAtividade()'),'Criar Atividade');?>

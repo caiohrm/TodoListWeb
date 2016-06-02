@@ -1,8 +1,10 @@
 $(document).foundation();
 
 $(document).ready(function(){
-
-    var table =  $('#myTable').DataTable();
+    CarregaCombos();
+    var table =  $('#myTable').DataTable({
+        "bFilter": false,
+    });
 
     $('#myTable').find('tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
@@ -64,10 +66,8 @@ function salvaProgramador() {
             }
             else {
                 $("#erros").html('').append("<div class='callout success'>Programador  adicionado com succeso</div>");
-                var select = document.getElementsByName("usuario");
-                removeCampos(select);
-                adiciona(data.message,select);
                 LimpaCampos();
+                CarregaCombos();
             }
             // here we will handle errors and validation messages
         });
@@ -130,9 +130,7 @@ function salvaPrograma() {
             else {
                 $("#errosa").html('').append("<div class='callout success'>Programa adicionado com succeso</div>");
                 LimpaCampos();
-                var select = document.getElementsByName("programas");
-                removeCampos(select);
-                adiciona(data.message,select);
+                CarregaCombos();
                 console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
@@ -161,9 +159,7 @@ function salvaStatus() {
             else {
                 $("#erross").html('').append("<div class='callout success'>Status adicionado com succeso</div>");
                 LimpaCampos();
-                var select = document.getElementsByName("situacao");
-                removeCampos(select);
-                adiciona(data.message,select);
+                CarregaCombos();
                 console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
@@ -221,9 +217,9 @@ function salvaAtividade() {
 }
 
 function CarregaDatabase() {
-    var programador = $("[name='situacao]").val();
-    var programas = $("[name='programas]").val();
-    var situacao = $("[name='situacao]").val();
+    var programador = $("[name='programador']").val();
+    var programas = $("[name='programas']").val();
+    var situacao = $("[name='situacao']").val();
     $.ajax({
         type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url: 'painel/CarregaDatabase', // the url where we want to POST
@@ -267,6 +263,28 @@ function CarregaAtividade() {
             removeCampos(select);
             adiciona(data.situacao,select);
             $('#atividade').foundation('open');
+        });
+}
+
+
+function CarregaCombos() {
+    $.ajax({
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'painel/Carredados', // the url where we want to POST
+        dataType    : 'json', // what type of data do we expect back from the server
+        encode      : true
+    })
+    // using the done promise callback
+        .done(function(data) {
+            var select = document.getElementsByName("programador");
+            removeCampos(select);
+            adiciona(data.programador,select);
+            var select = document.getElementsByName("programas");
+            removeCampos(select);
+            adiciona(data.programa,select);
+            var select = document.getElementsByName("situacao");
+            removeCampos(select);
+            adiciona(data.situacao,select);
         });
 }
 

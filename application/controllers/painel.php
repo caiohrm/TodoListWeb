@@ -87,8 +87,6 @@ class Painel extends  CI_Controller{
             $dados['vsenha_programador'] = md5($dados['vsenha_programador']);
             $this->usuarios->insert_user($dados);
             $data['success'] = true;
-            $row =$this->usuarios->get_bylogin($login)->row();
-            $data['message'] = array($row->nid____programador,$row->vnome__programador);
         }else
         {
             $this->output->enable_profiler(false);
@@ -106,12 +104,6 @@ class Painel extends  CI_Controller{
             $dados = elements(array('vnome____programa'), $this->input->post());
             $this->usuarios->insert_program($dados);
             $data['success'] = true;
-            $valores =$this->usuarios->get_programas()->result();
-            $dados = array();
-            foreach ($valores as $row) {
-                $dados[] = array($row->nid____programa,$row->vnome____programa);
-            }
-            $data['message'] = $dados;
         }else
         {
             $this->output->enable_profiler(false);
@@ -129,12 +121,6 @@ class Painel extends  CI_Controller{
             $dados = elements(array('vdescristatus'), $this->input->post());
             $this->usuarios->insert_status($dados);
             $data['success'] = true;
-            $valores =$this->usuarios->get_situac()->result();
-            $dados = array();
-            foreach ($valores as $row) {
-                $dados[] = array($row->nid____status,$row->vdescristatus);
-            }
-            $data['message'] = $dados;
         }else
         {
             $this->output->enable_profiler(false);
@@ -183,14 +169,8 @@ class Painel extends  CI_Controller{
     
     public function inicio(){
         if(esta_logado(false)):
-            $usuario = $this->usuarios->get_users()->result();
-            $programa = $this->usuarios->get_programas()->result();
-            $situacao = $this->usuarios->get_situac()->result();
             $tarefas = $this->usuarios->get_tarefas()->result();
             set_tema('tarefas',$tarefas);
-            set_tema('users',$usuario);
-            set_tema('programas',$programa);
-            set_tema('situacao',$situacao);
             set_tema('titulo','Inicio');
             set_tema('rodape','<p>&copy; 2016 | todos os direitos reservados para Caio Martins</p>');
             set_tema('conteudo','');
@@ -205,7 +185,7 @@ class Painel extends  CI_Controller{
         $programador = $_POST["nid____programador"];
         $programa = $_POST["nid____programa"];
         $status = $_POST["nstate_todolist"];
-        $valores = $this->usuarios->get_programas($programador,$programa,$status)->result();
+        $valores = $this->usuarios->get_tarefas($programador,$programa,$status)->result();
         $dados = array();
         foreach ($valores as $linha) {
             $dados[] = array($linha->vnome__programador,

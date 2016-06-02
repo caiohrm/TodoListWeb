@@ -2,7 +2,7 @@ $(document).foundation();
 
 $(document).ready(function(){
     CarregaCombos();
-    CarregaDatabase();
+    CarregaCombosAtividade();
     var table =  $('#myTable').DataTable({
         "bFilter": false,
 
@@ -26,7 +26,9 @@ $(document).ready(function(){
         var id = $(this).attr('id');
         CarregaTarefa(id);
     } );
-
+    setTimeout(function() {
+        CarregaDatabase();
+    }, 5);
 
 });
 $.ajax('painel/creatActivity')
@@ -92,7 +94,7 @@ function salvaProgramador() {
 function LimpaCampos() {
     Limpa(document.getElementsByTagName('input'));
     Limpa(document.getElementsByTagName('textarea'));
-    select = document.getElementById("dprazo_todolist");//id
+    var select = document.getElementById("dprazo_todolist");//id
     select.valueAsDate = new Date();
     select = document.getElementById("dtlancamtodolist");//id
     select.valueAsDate = new Date();
@@ -255,6 +257,11 @@ function CarregaDatabase() {
 
 
 function CarregaAtividade() {
+    CarregaCombosAtividade();
+    $('#atividade').foundation('open');
+}
+
+function CarregaCombosAtividade() {
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : 'painel/Carredados', // the url where we want to POST
@@ -263,6 +270,7 @@ function CarregaAtividade() {
     })
     // using the done promise callback
         .done(function(data) {
+            console.log(data);
             var select = document.getElementsByName("nid____programador");
             removeCampos(select);
             adiciona(data.programador,select);
@@ -272,8 +280,8 @@ function CarregaAtividade() {
             var select = document.getElementsByName("nstate_todolist");
             removeCampos(select);
             adiciona(data.situacao,select);
-            $('#atividade').foundation('open');
         });
+
 }
 
 function CarregaTarefa(id) {
@@ -286,6 +294,7 @@ function CarregaTarefa(id) {
     })
     // using the done promise callback
         .done(function(data) {
+            console.log(data);
             var select = document.getElementsByName("nid____programador")[0];
             select.value=data.message[0][1];
             select = document.getElementsByName("nid____programa")[0];
@@ -299,7 +308,7 @@ function CarregaTarefa(id) {
             select = document.getElementById("vdescritodolist");//id
             select.value=data.message[0][4];
             select = document.getElementById("dtlancamtodolist");//id
-            select.value=data.message[0][7];
+            select.valueAsDate=data.message[0][7];
             select = document.getElementsByName("id")[0];//id
             if(select.value=data.message[0][0] != null)
             {
@@ -321,6 +330,7 @@ function CarregaCombos() {
     })
     // using the done promise callback
         .done(function(data) {
+            console.log(data);
             var select = document.getElementsByName("programador");
             removeCampos(select);
             adiciona(data.programador,select);

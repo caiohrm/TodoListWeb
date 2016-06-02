@@ -62,28 +62,16 @@ switch ($tela):
         echo '<div class="row expanded">';
         echo '<div class="columns medium-12 text-left">';
         echo '<div class="columns medium-2 text-left">';
-        $data= array();
-        foreach ($users as $row){
-            $data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));
-        }
         echo form_label('Programador:');
-        echo  form_dropdown('nid____programador',$data,01);
+        echo  form_dropdown('nid____programador',null,01);
         echo '</div>';
         echo '<div class="columns medium-2 text-left">';
-        $data= array();
-        foreach ($programas as $row){
-            $data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));
-        }
         echo form_label('Programa:');
-        echo form_dropdown('nid____programa',$data,01);
+        echo form_dropdown('nid____programa',null,01);
         echo '</div>';
         echo '<div class="columns medium-3 text-left">';
-        $data= array();
-        foreach ($situacao as $row) {
-            $data = array_merge($data, array($row->nid____status => $row->vdescristatus));
-        }
         echo form_label('Situação:');
-        echo form_dropdown('nstate_todolist',$data,01);
+        echo form_dropdown('nstate_todolist',null,01);
         echo '</div>';
         echo '<div class="columns medium-2 text-left">';
         echo form_label('Lançamento:');

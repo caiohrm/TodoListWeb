@@ -183,12 +183,12 @@ function salvaAtividade() {
         url         : 'painel/salvaAtividade', // the url where we want to POST
         dataType    : 'json', // what type of data do we expect back from the server
         data: {
-               nid____programador:usuario,
-               nid____programa:programas,
-               nstate_todolist:situacao,
-               dprazo_todolist:datetime,
-               vtitulotodolist:titulo,
-               vdescritodolist:descricao
+            nid____programador:usuario,
+            nid____programa:programas,
+            nstate_todolist:situacao,
+            dprazo_todolist:datetime,
+            vtitulotodolist:titulo,
+            vdescritodolist:descricao
         },
         encode      : true
     })
@@ -220,6 +220,34 @@ function salvaAtividade() {
         });
 }
 
+function CarregaDatabase() {
+    var programador = $("[name='situacao]").val();
+    var programas = $("[name='programas]").val();
+    var situacao = $("[name='situacao]").val();
+    $.ajax({
+        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url: 'painel/CarregaDatabase', // the url where we want to POST
+        dataType: 'json', // what type of data do we expect back from the server
+        data: {nid____programador: programador,nid____programa: programas,nstate_todolist: situacao},
+        encode: true
+    })
+    // using the done promise callback
+        .done(function (data) {
+            console.log(data);
+            var table = $('#myTable').DataTable();
+            table.clear().draw();
+            var length = data.message.length;
+            for (var i = 0; i < length; i++) {
+
+                table.row.add(data.message[i]).draw(false);
+
+            }
+
+            // here we will handle errors and validation messages
+        });
+}
+
+
 function CarregaAtividade() {
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -240,9 +268,9 @@ function CarregaAtividade() {
             adiciona(data.situacao,select);
             $('#atividade').foundation('open');
         });
-
-
 }
+
+
 
 
 //,'data-open'=>'atividade'

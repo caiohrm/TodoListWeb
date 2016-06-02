@@ -2,8 +2,10 @@ $(document).foundation();
 
 $(document).ready(function(){
     CarregaCombos();
+    CarregaDatabase();
     var table =  $('#myTable').DataTable({
         "bFilter": false,
+
     });
 
     $('#myTable').find('tbody').on( 'click', 'tr', function () {
@@ -15,6 +17,15 @@ $(document).ready(function(){
             $(this).addClass('selected');
         }
     } );
+
+    $('#myTable').find('tbody').on( 'dblclick', 'tr', function () {
+        if ( !$(this).hasClass('selected') ) {
+            $(this).addClass('selected');
+            var id = $(this).attr('id');
+            CarregaTarefa(id);
+        }
+    } );
+
 });
 $.ajax('painel/creatActivity')
     .done(function(resp){
@@ -60,7 +71,6 @@ function salvaProgramador() {
         // using the done promise callback
         .done(function(data) {
             // log data to the console so we can see
-            console.log(data);
             if(!data.success) {
                 $("#erros").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }
@@ -99,7 +109,6 @@ function removeCampos(select) {
 
 function adiciona(data,select) {
     length = data.length;
-    console.log(data);
     for(var i=0;i< length;i++){
         var option = document.createElement("option");
         option.text =data[i][1];
@@ -121,17 +130,14 @@ function salvaPrograma() {
         // using the done promise callback
         .done(function(data) {
             // log data to the console so we can see
-            console.log(data);
+
             if(!data.success) {
-                console.log("passou aqui");
                 $("#errosa").html('').append("<div class='alert callout'>" + data.message + "</div>");
-                console.log("passou aqui tbm");
             }
             else {
                 $("#errosa").html('').append("<div class='callout success'>Programa adicionado com succeso</div>");
                 LimpaCampos();
                 CarregaCombos();
-                console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
         });
@@ -152,7 +158,6 @@ function salvaStatus() {
     // using the done promise callback
         .done(function(data) {
             // log data to the console so we can see
-            console.log(data);
             if(!data.success) {
                 $("#erross").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }
@@ -160,7 +165,6 @@ function salvaStatus() {
                 $("#erross").html('').append("<div class='callout success'>Status adicionado com succeso</div>");
                 LimpaCampos();
                 CarregaCombos();
-                console.log("adicionado com sucesso");
             }
             // here we will handle errors and validation messages
         });
@@ -174,6 +178,7 @@ function salvaAtividade() {
     var datetime = $("#dprazo_todolist").val();
     var titulo = $("#vtitulotodolist").val();
     var descricao = $("#vdescritodolist").val();
+    var id = $("[name='id']").val();
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : 'painel/salvaAtividade', // the url where we want to POST
@@ -184,14 +189,14 @@ function salvaAtividade() {
             nstate_todolist:situacao,
             dprazo_todolist:datetime,
             vtitulotodolist:titulo,
-            vdescritodolist:descricao
+            vdescritodolist:descricao,
+            nid____todolist:id
         },
         encode      : true
     })
     // using the done promise callback
         .done(function(data) {
             // log data to the console so we can see
-            console.log(data);
             if (data.success) {
                 $("#errossa").html('').append("<div class='callout success'>Atividade adicionada com succeso</div>");
                 LimpaCampos();
@@ -207,8 +212,6 @@ function salvaAtividade() {
                     table.row.add(data.message[i]).draw(false);
 
                 }
-
-                console.log("adicionado com sucesso");
             } else {
                 $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }
@@ -229,16 +232,17 @@ function CarregaDatabase() {
     })
     // using the done promise callback
         .done(function (data) {
-            console.log(data);
             var table = $('#myTable').DataTable();
             table.clear().draw();
             var length = data.message.length;
             for (var i = 0; i < length; i++) {
-
-                table.row.add(data.message[i]).draw(false);
+                //var row = table.row.add(data.message[i].slice(1,data.message[0].length)).draw(false);
+                var row = $('#myTable').dataTable().fnAddData(data.message[i].slice(1,data.message[0].length));
+                //var row = table.fnAddData(data.message[i].slice(1,data.message[0].length)).draw(false);
+                var theNode = $('#myTable').dataTable().fnSettings().aoData[row[0]].nTr;
+                theNode.setAttribute('id',data.message[i][0]);
 
             }
-
             // here we will handle errors and validation messages
         });
 }
@@ -266,6 +270,34 @@ function CarregaAtividade() {
         });
 }
 
+function CarregaTarefa(id) {
+    $.ajax({
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'painel/CarregaTarefa', // the url where we want to POST
+        dataType    : 'json', // what type of data do we expect back from the server
+        encode      : true,
+        data        : {nid____todolist:id}
+    })
+    // using the done promise callback
+        .done(function(data) {
+            var select = document.getElementsByName("nid____programador")[0];
+            select.value=data.message[0][1];
+            select = document.getElementsByName("nid____programa")[0];
+            select.value=data.message[0][2];
+            select = document.getElementsByName("nstate_todolist")[0];
+            select.value=data.message[0][6];
+            select = document.getElementById("dprazo_todolist");//id
+            select.valueAsDate = new Date(data.message[0][7]);
+            select = document.getElementById("vtitulotodolist");//id
+            select.value=data.message[0][3];
+            select = document.getElementById("vdescritodolist");//id
+            select.value=data.message[0][4];
+            select = document.getElementsByName("id")[0];//id
+            select.value=data.message[0][0];
+            $('#atividade').foundation('open');
+        });
+}
+
 
 function CarregaCombos() {
     $.ajax({
@@ -287,8 +319,3 @@ function CarregaCombos() {
             adiciona(data.situacao,select);
         });
 }
-
-
-
-
-//,'data-open'=>'atividade'

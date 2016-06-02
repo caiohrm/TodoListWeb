@@ -41,6 +41,7 @@ class Painel extends  CI_Controller{
     public function salvaAtividade()
     {
         $data = array();
+        $nid____todolist = $_POST["nid____todolist"];
         $this->form_validation->set_rules('vtitulotodolist','NOME','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('vdescritodolist','NOME','trim|required|min_length[4]|strtolower');
         if($this->form_validation->run()) {
@@ -50,7 +51,7 @@ class Painel extends  CI_Controller{
                                     'dprazo_todolist',
                                     'vtitulotodolist',
                                     'vdescritodolist'), $this->input->post());
-            $this->usuarios->insert_atividade($dados);
+            $this->usuarios->insert_atividade($dados,$nid____todolist);
             $dados = array();
             $valores=  $this->usuarios->get_tarefas()->result();
             foreach ($valores as $linha) {
@@ -75,7 +76,7 @@ class Painel extends  CI_Controller{
     public function salvaProgramador()
     {
         $data = array();
-        $login = $_POST["vlogin_programador"];
+
         $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_message('is_unique', 'Error Message');
         $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|' .
@@ -169,8 +170,6 @@ class Painel extends  CI_Controller{
     
     public function inicio(){
         if(esta_logado(false)):
-            $tarefas = $this->usuarios->get_tarefas()->result();
-            set_tema('tarefas',$tarefas);
             set_tema('titulo','Inicio');
             set_tema('rodape','<p>&copy; 2016 | todos os direitos reservados para Caio Martins</p>');
             set_tema('conteudo','');
@@ -178,6 +177,26 @@ class Painel extends  CI_Controller{
         else:
         redirect('usuarios/login');
         endif;
+    }
+    
+    public function CarregaTarefa(){
+
+        $idTarefa = $_POST["nid____todolist"];
+        $valores = $this->usuarios->get_tarefaById($idTarefa)->result();
+        $dados = array();
+        foreach ($valores  as $linha){
+            $dados[] = array(
+                $linha->nid____todolist,
+                $linha->nid____programador,
+                $linha->nid____programa,
+                $linha->vtitulotodolist,
+                $linha->vdescritodolist,
+                $linha->vcreatotodolist,
+                $linha->nstate_todolist,
+                $linha->dprazo_todolist);
+        }
+        $data['message'] = $dados;
+        echo json_encode($data);
     }
 
     public function CarregaDatabase()
@@ -188,7 +207,9 @@ class Painel extends  CI_Controller{
         $valores = $this->usuarios->get_tarefas($programador,$programa,$status)->result();
         $dados = array();
         foreach ($valores as $linha) {
-            $dados[] = array($linha->vnome__programador,
+            $dados[] = array(
+                $linha->nid____todolist,
+                $linha->vnome__programador,
                 $linha->vnome____programa,
                 $linha->vtitulotodolist,
                 $linha->vdescristatus,

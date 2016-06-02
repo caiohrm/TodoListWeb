@@ -61,13 +61,6 @@ if(esta_logado(false)):;?>
         );
         $this->table->set_template($template);
         $this->table->set_heading('Programador','Programa','Descrição','Status','Prazo');
-        foreach ($tarefas as $linha):
-            $this->table->add_row($linha->vnome__programador,
-                $linha->vnome____programa,
-                $linha->vtitulotodolist,
-                $linha->vdescristatus,
-                $linha->dprazo_todolist);
-        endforeach;
         echo $this->table->generate();
 
         ?>

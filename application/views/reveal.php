@@ -106,6 +106,7 @@ switch ($tela):
         echo form_button(array('name'=>'status','class'=> 'button','onclick'=>'salvaAtividade()'),'Cadastrar');
         echo form_button(array('name'=>'logar1','class'=> 'alert button'),'Cancelar','data-close');
         echo '</div>';
+        echo '<input type="hidden" name="id" value="">';
         echo form_fieldset_close();
         break;
     default:

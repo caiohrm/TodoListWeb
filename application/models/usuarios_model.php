@@ -62,12 +62,17 @@ public function do_login($usuario=NULL,$senha=NULL){
         endif;
     }
 
-    public function insert_atividade($dados=NULL)
+    public function insert_atividade($dados=NULL,$nid____todolist=NULL)
     {
-        if($dados!= NULL):
-            $this->db->insert('todolist',$dados);
-            $this->session->set_flashdata('cadastrook','Cadastro efetuado com sucesso');
-        endif;
+        if($dados!= NULL) {
+            if($nid____todolist ==NULL) {
+                $this->db->insert('todolist', $dados);
+                $this->session->set_flashdata('cadastrook', 'Cadastro efetuado com sucesso');
+            }else{
+                $this->db->where('nid____todolist',$nid____todolist);
+                $this->db->update('todolist' ,$dados);
+            }
+        }
     }
 
     public function insert_status($dados=NULL){
@@ -77,6 +82,20 @@ public function do_login($usuario=NULL,$senha=NULL){
         endif;
 
     }
+
+    public function get_tarefaById($idTarefa=NULL)
+    {
+        if($idTarefa != null):
+            $this->db->where('nid____todolist',$idTarefa);
+            $this->db->limit(1);
+            return $this->db->get('todolist');
+        else:
+            return false;
+        endif;
+
+
+    }
+
 
     public function get_tarefas($programador=0,$projetos=0,$status=0)
     {

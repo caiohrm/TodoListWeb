@@ -59,9 +59,9 @@ switch ($tela):
         echo '<div class="columns medium-12 medium-centered">';
         echo '<div class="columns medium-12 medium-centered" id="errossa"></div>';
         echo form_fieldset('Cadastro Atividade',array('class' => 'fieldset'));
-        echo '<div class="row">';
+        echo '<div class="row expanded">';
         echo '<div class="columns medium-12 text-left">';
-        echo '<div class="columns medium-3 text-left">';
+        echo '<div class="columns medium-2 text-left">';
         $data= array();
         foreach ($users as $row){
             $data = array_merge($data,array($row->nid____programador=>$row->vnome__programador));
@@ -69,7 +69,7 @@ switch ($tela):
         echo form_label('Programador:');
         echo  form_dropdown('nid____programador',$data,01);
         echo '</div>';
-        echo '<div class="columns medium-3 text-left">';
+        echo '<div class="columns medium-2 text-left">';
         $data= array();
         foreach ($programas as $row){
             $data = array_merge($data,array($row->nid____programa=>$row->vnome____programa));
@@ -84,6 +84,10 @@ switch ($tela):
         }
         echo form_label('Situação:');
         echo form_dropdown('nstate_todolist',$data,01);
+        echo '</div>';
+        echo '<div class="columns medium-2 text-left">';
+        echo form_label('Lançamento:');
+        echo '<input type="date" id="dtlancamtodolist" name="bday" value="'.date("Y-m-d").'"readonly>';
         echo '</div>';
         echo '<div class="columns medium-3 text-left">';
         echo form_label('Prazo:');

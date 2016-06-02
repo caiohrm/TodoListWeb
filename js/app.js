@@ -295,8 +295,15 @@ function CarregaTarefa(id) {
             select.value=data.message[0][3];
             select = document.getElementById("vdescritodolist");//id
             select.value=data.message[0][4];
+            select = document.getElementById("dtlancamtodolist");//id
+            select.value=data.message[0][7];
             select = document.getElementsByName("id")[0];//id
-            select.value=data.message[0][0];
+            if(select.value=data.message[0][0] != null)
+            {
+                
+                
+            }
+            
             $('#atividade').foundation('open');
         });
 }

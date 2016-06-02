@@ -193,7 +193,8 @@ class Painel extends  CI_Controller{
                 $linha->vdescritodolist,
                 $linha->vcreatotodolist,
                 $linha->nstate_todolist,
-                $linha->dprazo_todolist);
+                $linha->dprazo_todolist,
+                $linha->dtlancamtodolist);
         }
         $data['message'] = $dados;
         echo json_encode($data);

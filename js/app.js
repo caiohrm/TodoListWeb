@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
 
     $('#myTable').find('tbody').on( 'click', 'tr', function () {
-        
+
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -22,10 +22,11 @@ $(document).ready(function(){
     $('#myTable').find('tbody').on( 'dblclick', 'tr', function () {
         if ( !$(this).hasClass('selected') ) {
             $(this).addClass('selected');
-            var id = $(this).attr('id');
-            CarregaTarefa(id);
         }
+        var id = $(this).attr('id');
+        CarregaTarefa(id);
     } );
+
 
 });
 $.ajax('painel/creatActivity')
@@ -92,6 +93,8 @@ function LimpaCampos() {
     Limpa(document.getElementsByTagName('input'));
     Limpa(document.getElementsByTagName('textarea'));
     select = document.getElementById("dprazo_todolist");//id
+    select.valueAsDate = new Date();
+    select = document.getElementById("dtlancamtodolist");//id
     select.valueAsDate = new Date();
 }
 

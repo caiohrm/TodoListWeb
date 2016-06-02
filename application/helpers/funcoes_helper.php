@@ -52,7 +52,7 @@ function init_painel(){
     set_tema('headerinc',load_css(array('foundation.min',
                                         'app',
                                         'jquery.dataTables.min',
-                                        'dataTables.foundation.min')),FALSE);
+                                        'dataTables.foundation.min',)),FALSE);
     set_tema('footerinc',load_js(array(
                                         'jquery-2.2.4',
                                         'jquery.dataTables.min',

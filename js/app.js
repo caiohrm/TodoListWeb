@@ -9,6 +9,7 @@ $(document).ready(function(){
     });
 
     $('#myTable').find('tbody').on( 'click', 'tr', function () {
+        
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -90,6 +91,8 @@ function salvaProgramador() {
 function LimpaCampos() {
     Limpa(document.getElementsByTagName('input'));
     Limpa(document.getElementsByTagName('textarea'));
+    select = document.getElementById("dprazo_todolist");//id
+    select.valueAsDate = new Date();
 }
 
 function Limpa(input) {

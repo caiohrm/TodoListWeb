@@ -200,6 +200,24 @@ class Painel extends  CI_Controller{
         endif;
     }
 
+    public function CarregaDatabase()
+    {
+        $programador = $_POST["nid____programador"];
+        $programa = $_POST["nid____programa"];
+        $status = $_POST["nstate_todolist"];
+        $valores = $this->usuarios->get_programas($programador,$programa,$status)->result();
+        $dados = array();
+        foreach ($valores as $linha) {
+            $dados[] = array($linha->vnome__programador,
+                $linha->vnome____programa,
+                $linha->vtitulotodolist,
+                $linha->vdescristatus,
+                $linha->dprazo_todolist);
+        }
+        $data['message'] = $dados;
+        echo json_encode($data);
+
+    }
 
 
 }

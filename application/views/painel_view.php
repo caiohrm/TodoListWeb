@@ -35,7 +35,7 @@ if(esta_logado(false)):;?>
             ?>
         </div>
         <div class="columns medium-2 text-left">
-            <?php echo  form_dropdown('usuario',$data,01); ?>
+            <?php echo  form_dropdown('programador',$data,01); ?>
         </div>
         <div class="columns medium-1 text-center">
             <?php
@@ -58,7 +58,7 @@ if(esta_logado(false)):;?>
             ?>
         </div>
         <div class="columns medium-2 text-center">
-            <?php echo form_dropdown('situacao',$data,01); ?>
+            <?php echo form_dropdown('situacao',$data,01,'onChange=CarregaDatabase()'); ?>
         </div>
         <div class="columns medium-2 text-right">
             <?php echo form_button(array('name'=>'logar','class'=> 'button radius right','onclick'=>'CarregaAtividade()'),'Criar Atividade');?>

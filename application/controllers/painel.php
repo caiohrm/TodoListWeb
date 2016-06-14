@@ -41,7 +41,9 @@ class Painel extends  CI_Controller{
     public function salvaAtividade()
     {
         $data = array();
-        $nid____todolist = $_POST["nid____todolist"];
+        $nid____todolist =null;
+        if(isset($_POST["nid____todolist"]))
+            $nid____todolist = $_POST["nid____todolist"];
         $this->form_validation->set_rules('vtitulotodolist','NOME','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('vdescritodolist','NOME','trim|required|min_length[4]|strtolower');
         if($this->form_validation->run()) {

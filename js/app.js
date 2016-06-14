@@ -189,6 +189,8 @@ function salvaAtividade() {
     var titulo = $("#vtitulotodolist").val();
     var descricao = $("#vdescritodolist").val();
     var id = $("[name='id']").val();
+    if(id == null)
+        id=-1;
     $.ajax({
         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : 'painel/salvaAtividade', // the url where we want to POST
@@ -210,18 +212,7 @@ function salvaAtividade() {
             if (data.success) {
                 $("#errossa").html('').append("<div class='callout success'>Atividade adicionada com succeso</div>");
                 LimpaCampos();
-                var table = $('#myTable').DataTable();
-                table.clear().draw();
-                var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-                // Insert a row in the table at the last row
-
-                var length = data.message.length;
-                alert(length);
-                for (var i = 0; i < length; i++) {
-
-                    table.row.add(data.message[i]).draw(false);
-
-                }
+                CarregaDatabase();
             } else {
                 $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }
@@ -250,6 +241,7 @@ function CarregaDatabase() {
                 var row = $('#myTable').dataTable().fnAddData(data.message[i].slice(1,data.message[0].length));
                 //var row = table.fnAddData(data.message[i].slice(1,data.message[0].length)).draw(false);
                 var theNode = $('#myTable').dataTable().fnSettings().aoData[row[0]].nTr;
+                alert(data.message[i][0]);
                 theNode.setAttribute('id',data.message[i][0]);
 
             }
@@ -317,7 +309,6 @@ function CarregaTarefa(id) {
                 
                 
             }
-            
             $('#atividade').foundation('open');
         });
 }

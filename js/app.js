@@ -8,6 +8,14 @@ $(document).ready(function(){
 
     });
 
+    $('#myTable').find('tbody').on( 'dblclick', 'tr', function () {
+        if ( !$(this).hasClass('selected') ) {
+            $(this).addClass('selected');
+        }
+        var id = $(this).attr('id');
+        CarregaTarefa(id);
+    } );
+
     $('#myTable').find('tbody').on( 'click', 'tr', function () {
 
         if ( $(this).hasClass('selected') ) {
@@ -19,13 +27,7 @@ $(document).ready(function(){
         }
     } );
 
-    $('#myTable').find('tbody').on( 'dblclick', 'tr', function () {
-        if ( !$(this).hasClass('selected') ) {
-            $(this).addClass('selected');
-        }
-        var id = $(this).attr('id');
-        CarregaTarefa(id);
-    } );
+
     setTimeout(function() {
         CarregaDatabase();
     }, 5);

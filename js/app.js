@@ -241,7 +241,6 @@ function CarregaDatabase() {
                 var row = $('#myTable').dataTable().fnAddData(data.message[i].slice(1,data.message[0].length));
                 //var row = table.fnAddData(data.message[i].slice(1,data.message[0].length)).draw(false);
                 var theNode = $('#myTable').dataTable().fnSettings().aoData[row[0]].nTr;
-                alert(data.message[i][0]);
                 theNode.setAttribute('id',data.message[i][0]);
 
             }

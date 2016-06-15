@@ -188,7 +188,8 @@ function salvaAtividade() {
     var datetime = $("#dprazo_todolist").val();
     var titulo = $("#vtitulotodolist").val();
     var descricao = $("#vdescritodolist").val();
-    var id = $("[name='id']").val();
+    var id = $("#idtarefa").val();
+    alert(id);
     if(id == null)
         id=-1;
     $.ajax({
@@ -263,7 +264,6 @@ function CarregaCombosAtividade() {
     })
     // using the done promise callback
         .done(function(data) {
-            console.log(data);
             var select = document.getElementsByName("nid____programador");
             removeCampos(select);
             adiciona(data.programador,select);
@@ -287,7 +287,6 @@ function CarregaTarefa(id) {
     })
     // using the done promise callback
         .done(function(data) {
-            console.log(data);
             var select = document.getElementsByName("nid____programador")[0];
             select.value=data.message[0][1];
             select = document.getElementsByName("nid____programa")[0];
@@ -302,13 +301,13 @@ function CarregaTarefa(id) {
             select.value=data.message[0][4];
             select = document.getElementById("dtlancamtodolist");//id
             select.valueAsDate=data.message[0][7];
-            select = document.getElementsByName("id")[0];//id
-            if(select.value=data.message[0][0] != null)
+            select = document.getElementById("idtarefa");//id
+            if(data.message[0][0] != null)
             {
-                
-                
+                select.value=data.message[0][0];
+                $('#atividade').foundation('open');
+                console.log(data.message[0][0]);
             }
-            $('#atividade').foundation('open');
         });
 }
 
@@ -322,7 +321,6 @@ function CarregaCombos() {
     })
     // using the done promise callback
         .done(function(data) {
-            console.log(data);
             var select = document.getElementsByName("programador");
             removeCampos(select);
             adiciona(data.programador,select);

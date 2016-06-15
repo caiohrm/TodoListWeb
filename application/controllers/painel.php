@@ -79,7 +79,7 @@ class Painel extends  CI_Controller{
     {
         $data = array();
 
-        $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]|strtolower');
+        $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]');
         $this->form_validation->set_message('is_unique', 'Error Message');
         $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|' .
         'is_unique[programador.vlogin_programador]');

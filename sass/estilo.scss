@@ -1,0 +1,49 @@
+@each $tema, $valor in $tsw-config-map {
+
+  $pad:               map-get($valor, pad);
+  $bg-color:          map-get($valor, bg-color);
+  $bg-image:          map-get($valor, bg-image);
+  $bg-position:       map-get($valor, bg-position);
+  $bg-repeat:         map-get($valor, bg-repeat);
+  $bg-attachment:     map-get($valor, bg-attachment);
+  $bg-size:           map-get($valor, bg-size);
+
+  #tsw-#{"" + $tema} {
+    @include tsw-frontend(
+      $pad,
+      $bg-color,
+      $bg-image,
+      $bg-position,
+      $bg-repeat,
+      $bg-attachment,
+      $bg-size
+    );
+  }
+}
+
+@each $tema, $valor in $tsw-icons-map {
+
+  $color-ini:                       map-get($valor, tsw-icons-color-ini);
+  $color-fin:                       map-get($valor, tsw-icons-color-fin);
+  $bg-color-ini:                    map-get($valor, tsw-icons-bg-color-ini);
+  $bg-color-fin:                    map-get($valor, tsw-icons-bg-color-fin);
+  $padding:                         map-get($valor, tsw-icons-padding);
+  $border-ini:                      map-get($valor, tsw-icons-border-ini);
+  $border-fin:                      map-get($valor, tsw-icons-border-fin);
+  $border-radius:                   map-get($valor, tsw-icons-border-radius);
+  $transition:                      map-get($valor, tsw-icons-transition);
+
+  .tsw-icons-background-#{"" + $tema} {
+    @include tsw-icons-mix(
+      $color-ini,
+      $color-fin,
+      $bg-color-ini,
+      $bg-color-fin,
+      $padding,
+      $border-ini,
+      $border-fin,
+      $border-radius,
+      $transition
+    );
+  }
+}

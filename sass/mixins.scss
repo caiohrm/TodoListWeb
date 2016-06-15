@@ -1,0 +1,165 @@
+@mixin font($font-family, $font-weight, $font-style, $font-source){
+
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-style:  $font-style;
+
+  @if $tsw-font-source != null{
+    src: url($font-source);
+  }
+}
+
+@mixin transition($text-color, $background-color, $trans){
+  color: tsw-lightness($text-color, $background-color);
+  background-color: $background-color;
+  transition: $trans;
+}
+
+@mixin translink($text-color, $background-color, $transition){
+  a{
+    @include transition($text-color, $background-color, $transition);
+
+    &:hover{
+      @include transition(darken($text-color, 10%), $background-color, $transition);
+    }
+  }
+}
+
+@mixin top-bar(
+  $text-color, $background-color, $padding, $text-transform, $trans-color-ini,
+  $trans-color-fin, $trans-color-bg-ini, $trans-color-bg-fin, $transition, $text-decoration){
+
+  background-color: $background-color;
+  padding: $padding;
+  text-transform: $text-transform;
+
+  .menu {
+    color: tsw-lightness($text-color, $background-color);
+    background-color: transparent;
+    a {
+      @include transition($trans-color-ini, $trans-color-bg-ini, $transition);
+      text-decoration: $text-decoration;
+      &:hover {
+        @include transition($trans-color-fin, $trans-color-bg-fin, $transition);
+        text-decoration: $text-decoration;
+      }
+    }
+  }
+}
+
+@mixin title-bar($text-color, $background-color){
+  color: tsw-lightness($text-color, $background-color) !important;
+  background-color: $background-color !important;
+}
+
+//  Título direferente do padrão aplicado pela mixin abaixo.
+@mixin heading($font, $border, $text-shadow, $text-transform, $background-color){
+  font-family:  $font !important;
+
+  @if $text-transform != null{
+    text-transform: $text-transform;
+  }
+
+  @if $border != null{
+    border: $border;
+  }
+
+  @if $text-shadow != null {
+    text-shadow: $text-shadow;
+  }
+
+  @if $background-color != null{
+    background-color: $background-color;
+  }
+}
+
+@mixin headings($color){
+  h1, h2, h3, h4, h5, h6{
+    color: $color;
+    font-family:  $tsw-font-family;
+  }
+}
+
+@mixin off-canvas($text-color, $background-color, $height){
+  background-color: $background-color;
+  height: $height;
+  color: tsw-lightness($text-color, $background-color);
+}
+
+@mixin thumbnail($thumbnail-border, $thumbnail-shadow, $thumbnail-transition, $thumbnail-shadow-hover) {
+
+  border:         $thumbnail-border !important;
+  box-shadow:     $thumbnail-shadow !important;
+  transition:     $thumbnail-transition !important;
+
+  &:hover,
+  &:focus {
+    box-shadow: $thumbnail-shadow-hover !important;
+  }
+}
+
+@mixin tsw-frontend(
+  $pad,
+  $bg-color,
+  $bg-image,
+  $bg-position,
+  $bg-repeat,
+  $bg-attachment,
+  $bg-size){
+
+    @if ($pad != null){
+      padding: $pad;
+    }
+
+    @if ($bg-color != null){
+      background-color: $bg-color;
+    }
+
+    @if ($bg-image != null){
+      background-image: url($bg-image);
+    }
+
+    @if($bg-position != null){
+      background-position: $bg-position;
+    }
+
+    @if($bg-repeat != null){
+      background-repeat: $bg-repeat;
+    }
+
+    @if($bg-attachment != null){
+      background-attachment: $bg-attachment;
+    }
+
+    @if($bg-size != null){
+      background-size: $bg-size;
+    }
+}
+
+@mixin tsw-icons-mix(
+  $tsw-icons-color-ini,
+  $tsw-icons-color-fin,
+  $tsw-icons-bg-color-ini,
+  $tsw-icons-bg-color-fin,
+  $tsw-icons-padding,
+  $tsw-icons-border-ini,
+  $tsw-icons-border-fin,
+  $tsw-icons-border-radius,
+  $tsw-icons-transition       ){
+
+    color:                  $tsw-icons-color-ini;
+    background-color:       $tsw-icons-bg-color-ini;
+    padding:                $tsw-icons-padding;
+    border:                 $tsw-icons-border-ini;
+    border-radius:          $tsw-icons-border-radius;
+    transition:             0.7s;
+
+    &:hover{
+      color:                $tsw-icons-color-fin;
+      background-color:     $tsw-icons-bg-color-fin;
+      padding:              $tsw-icons-padding;
+      border:               $tsw-icons-border-fin;
+      border-radius:        $tsw-icons-border-radius;
+      transition:           $tsw-icons-transition;
+    }
+}

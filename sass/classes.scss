@@ -1,0 +1,165 @@
+/*
+| Definições Gerais
+| -> Fonte
+| -> Headings
+*/
+body {
+  @include font(
+                  $tsw-font-family,
+                  $tsw-font-weight,
+                  $tsw-font-font-style,
+                  $tsw-font-source);
+
+  @include headings($tsw-headings-color);
+}
+
+/*
+| Estilo único para títulos
+| -> Heading
+*/
+.tsw-heading {
+  @include heading(
+                  $tsw-heading-font,
+                  $tsw-heading-border,
+                  $tsw-heading-text-shadow,
+                  $tsw-heading-text-transform,
+                  $tsw-heading-background-color);
+}
+
+/*
+| Cores, atribui uma cor a um texto ou titulo
+| -> tsw-primary, secondary...
+*/
+@each $tema, $cor in $tsw-cores-map {
+  .tsw-#{"" + $tema} {
+    color: $cor;
+  }
+}
+
+/*
+| Reescrita da Topbar - Foundation
+| -> Topbar
+| -> Menu Dropdown
+*/
+.top-bar {
+  @include top-bar(
+                  $tsw-topbar-text-color,
+                  $tsw-topbar-background-color,
+                  $tsw-topbar-padding,
+                  $tsw-topbar-text-transform,
+                  $tsw-topbar-trans-color-ini,
+                  $tsw-topbar-trans-color-fin,
+                  $tsw-topbar-trans-color-bg-ini,
+                  $tsw-topbar-trans-color-bg-fin,
+                  $tsw-topbar-transition,
+                  $tsw-topbar-text-decoration);
+
+  .dropdown .menu {
+    background-color: $tsw-topbar-background-color;
+  }
+}
+
+/*
+| Reescrita de Title Bar - Foundation
+| -> Cor e fundo
+*/
+.title-bar {
+  @include title-bar(
+                  $tsw-title-bar-text-color,
+                  $tsw-title-bar-background-color);
+}
+
+/*
+| Custom Link, atribui um estilo a tag a filha, deve ser usado na tag pai.
+| -> Utiliza-se de maps para gerar todas as classes necessárias
+*/
+@each $tema, $valor in $tsw-link-color {
+  $text-color: map-get($valor, tsw-link-color);
+  $text-background-color: map-get($valor, tsw-link-background-color);
+  $transition: map-get($valor, tsw-link-transition);
+
+  .tsw-link-#{"" + $tema} {
+    @include translink(
+                    $text-color,
+                    $text-background-color,
+                    $transition);
+  }
+}
+
+/*
+| Reescrita do menu Off-Canvas - Foundation
+*/
+.off-canvas {
+  @include off-canvas(
+                  $tsw-offcanvas-text-color,
+                  $tsw-offcanvas-background-color,
+                  $tsw-offcanvas-height);
+}
+
+/*
+| Reescrita da classe thumbnails - Foundation
+*/
+.thumbnail {
+  @include thumbnail(
+                  $tsw-thumbnail-border,
+                  $tsw-thumbnail-shadow,
+                  $tsw-thumbnail-transition,
+                  $tsw-thumbnail-shadow-hover);
+}
+
+.text-overlay{
+  background-color: $tsw-text-overlay-color;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.text-overlay-wrapper{
+  margin-top: $tsw-text-overlay-margin;
+}
+
+//  CRIAR CONFIGURAÇÕES - ADICIONADO AO CRIAR ESTILO DO ORTIZ
+.solid-hr{
+  border: 2px solid $tsw-primary;
+  max-width: 10%;
+}
+
+.dotted{
+  border-color: $tsw-primary;
+  border-style: dashed;
+  max-width: 10%;
+  margin: 3em 0;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//  PAINEL ADMINISTRATIVO
+//----------------------------------------------------------------------------------------------------------------------
+
+/*
+| Estilo para o ID tsw-offcanvas-head
+| -> Utilizado no menu da Torch.
+*/
+#tsw-offcanvas-head {
+  margin-top: $tsw-painel-margin;
+}
+
+.tsw-vertical-color {
+  background-color: $tsw-offcanvas-background-color;
+}
+
+/*
+| Gera as classes tsw-contador, utilizado no menu da Torch, juntamente com os callouts
+*/
+@each $tema, $cor in $tsw-contadores-map {
+  $text-color:            map-get($cor, tsw-text-color);
+  $background-color:      map-get($cor, tsw-background-color);
+
+  .tsw-contador-#{$tema} {
+    color: $text-color !important;
+    background-color: $background-color;
+    border: none;
+  }
+}

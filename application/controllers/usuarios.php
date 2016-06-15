@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: caio
- * Date: 27/04/2016
- * Time: 17:08
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Usuarios extends  CI_Controller{
 
     public function __construct()
@@ -40,6 +36,7 @@ class Usuarios extends  CI_Controller{
             endif;
         endif;
     }
+
     public function logar(){
         set_tema('titulo','Login');
         set_tema('conteudo',load_modulo('usuarios','login'));

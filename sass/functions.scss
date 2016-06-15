@@ -1,0 +1,10 @@
+@function tsw-lightness($text-color, $background-color){
+  @if $background-color != null{
+    @if lightness($background-color) > lightness(#c3c3c3){
+      $text-color: darken($text-color, 75%);
+    }
+    @return $text-color;
+  }@else {
+    @return $text-color;
+  }
+}

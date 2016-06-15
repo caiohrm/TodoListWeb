@@ -1,0 +1,303 @@
+///---------------------------------------------------------------------------------------------------------------------
+///
+/// TORCH SOLUÇÕES WEB SASS
+///
+/// 1.0 - REESCRITA DE CLASSE DO FOUNDATION
+/// 2.0 - ESTILO PRÓPRIO TORCH SOLUÇÕES WEB
+/// 3.0 - CONFIGURAÇÕES DO PAINEL ADMINISTRATIVO
+///---------------------------------------------------------------------------------------------------------------------
+
+//  Fonte Padrão
+@import url(https://fonts.googleapis.com/css?family=Lato);
+$tsw-font-source:                       null;
+$tsw-font-family:                       'Lato', sans-serif;
+$tsw-font-weight:                       normal;
+$tsw-font-font-style:                   normal;
+
+//  Cores
+$tsw-primary:                           #F58634;
+$tsw-secondary:                         #888888;
+$tsw-third:                             #000;
+$tsw-forth:                             #ECCD9E;
+$tsw-alert:                             #ff5651;
+$tsw-warning:                           #ff9150;
+$tsw-success:                           #9bd578;
+$tsw-blue:                              #2ba6cb;
+$tsw-violet:                            #b856ff;
+
+//  Foundation 5 Cores
+$white:                                 #FFFFFF;
+$ghost:                                 #FAFAFA;
+$snow:                                  #F9F9F9;
+$vapor:                                 #F6F6F6;
+$white-smoke:                           #F5F5F5;
+$silver:                                #EFEFEF;
+$smoke:                                 #EEEEEE;
+$gainsboro:                             #DDDDDD;
+$iron:                                  #CCCCCC;
+$base:                                  #AAAAAA;
+$aluminum:                              #999999;
+$jumbo:                                 #888888;
+$monsoon:                               #777777;
+$steel:                                 #666666;
+$charcoal:                              #555555;
+$tuatara:                               #444444;
+$oil:                                   #333333;
+$jet:                                   #222222;
+$black:                                 #000000;
+
+//----------------------------------------------------------------------------------------------------------------------
+//  1.0 - REESCRITA DE CLASSE DO FOUNDATION
+//----------------------------------------------------------------------------------------------------------------------
+
+//  Topbar
+$tsw-topbar-text-color:                 $white;
+$tsw-topbar-background-color:           $tsw-blue;
+$tsw-topbar-padding:                    none;
+$tsw-topbar-text-decoration:            none;
+$tsw-topbar-text-transform:             none;
+$tsw-topbar-trans-color-ini:            $white !important;
+$tsw-topbar-trans-color-fin:            darken($white, 10%) !important;
+$tsw-topbar-trans-color-bg-ini:         transparent;
+$tsw-topbar-trans-color-bg-fin:         transparent;
+$tsw-topbar-transition:                 0.5s;
+
+//  Title Bar
+$tsw-title-bar-text-color:              $white;
+$tsw-title-bar-background-color:        $tsw-blue;
+
+//  Off-Canvas
+$tsw-offcanvas-text-color:              $oil;
+$tsw-offcanvas-background-color:        $vapor;
+$tsw-offcanvas-height:                  100% !default;
+
+//  Thumbnail
+$tsw-thumbnail-border:                  solid 4px $white;
+$tsw-thumbnail-shadow:                  0 0 0 1px rgba($tsw-primary, 0.2);
+$tsw-thumbnail-shadow-hover:            0 0 6px 1px rgba($tsw-primary, 0.5);
+$tsw-thumbnail-transition:              box-shadow 200ms ease-out;
+
+//----------------------------------------------------------------------------------------------------------------------
+//  2.0 - ESTILO PRÓPRIO TORCH SOLUÇÕES WEB
+//----------------------------------------------------------------------------------------------------------------------
+
+//  Heading
+//  Modifica um titulo, classe: Heading
+$tsw-heading-border:                    null !default;
+$tsw-heading-text-shadow:               null !default;
+$tsw-heading-background-color:          null !default;
+$tsw-heading-text-transform:            uppercase;
+$tsw-heading-font:                      $tsw-font-family;
+
+//  Headings
+//  Colore todos os titulos principais
+$tsw-headings-color:                    $oil;
+
+// Cor do textoverlay
+//  Utilizado para criar um fundo enre a imagem e o texto
+$tsw-text-overlay-color: rgba(0, 0, 0, 0.5);
+$tsw-text-overlay-margin: 135px;
+
+//  Map das classes de cores
+//  Usado para dar cores aos elementos.
+$tsw-cores-map: (
+  primary:                              $tsw-primary,
+  secondary:                            $tsw-secondary,
+  third:                                $tsw-third,
+  alert:                                $tsw-alert,
+  warning:                              $tsw-warning,
+  success:                              $tsw-success,
+  white:                                $white,
+  oil:                                  $oil
+);
+
+//  Translink
+//  Usado no elemento pai, cria classes tsw-link-#cor para gerar um efeito de transição.
+$tsw-link-transition:                   0.5s;
+$tsw-link-color: (
+  primary: (
+    tsw-link-color:                     $tsw-primary,
+    tsw-link-background-color:          null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+  secondary: (
+    tsw-link-color:                     $tsw-secondary,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+  third: (
+    tsw-link-color:                     $tsw-third,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+  success: (
+    tsw-link-color:                     $tsw-success,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+  alert: (
+    tsw-link-color:                     $tsw-alert,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+  warning: (
+    tsw-link-color:                     $tsw-warning,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  ),
+
+  white: (
+    tsw-link-color:                     $white,
+    tsw-link-background-color-ini:      null,
+    tsw-link-transition:                $tsw-link-transition
+  )
+);
+
+//  Config de ID's para as sessions principais.
+$tsw-config-map: (
+  banner:(
+    pad:  15em 0,
+    // bg-color: $tsw-primary
+    bg-image: '../img/banner.jpg',
+    bg-position: center,
+    bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    bg-size: cover,
+  ),
+
+  icones:(
+    pad: 6em 0,
+    // bg-color: $white,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  ),
+
+  sobre:(
+    pad: 6em 0,
+    bg-color: $vapor,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  ),
+
+  works:(
+    pad: 6em 0,
+    bg-color: $tsw-primary,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  ),
+
+  blog: (
+    pad: 6em 0,
+    // bg-color: $tsw-third,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  ),
+
+  contato:(
+    pad: 6em 0 0 0,
+    bg-color: $oil,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  ),
+
+  footer:(
+    pad: 2em 0 1em 0,
+    bg-color: $tsw-third,
+    // bg-image: url('../img/tsw-wall.png'),
+    // bg-position: center,
+    // bg-repeat: no-repeat,
+    // bg-attachment: fixed,
+    // bg-size: cover,
+  )
+);
+
+//  Estilização dos icones.
+$tsw-icons-map: (
+  1:(
+      tsw-icons-color-ini:                     $white,
+      tsw-icons-color-fin:                     darken($white, 10%),
+      tsw-icons-bg-color-ini:                  $tsw-primary,
+      tsw-icons-bg-color-fin:                  darken($tsw-primary, 10%),
+      tsw-icons-padding:                       30px,
+      tsw-icons-border-ini:                    2px solid transparent,
+      tsw-icons-border-fin:                    2px solid transparent,
+      tsw-icons-border-radius:                 50%,
+      tsw-icons-transition:                    0.7s
+  ),
+
+  2:(
+      tsw-icons-color-ini:                     $white,
+      tsw-icons-color-fin:                     darken($white, 10%),
+      tsw-icons-bg-color-ini:                  $tsw-primary,
+      tsw-icons-bg-color-fin:                  darken($tsw-primary, 10%),
+      tsw-icons-padding:                       30px,
+      tsw-icons-border-ini:                    2px solid transparent,
+      tsw-icons-border-fin:                    2px solid transparent,
+      tsw-icons-border-radius:                 50%,
+      tsw-icons-transition:                    0.7s
+  )
+);
+
+
+//  Continuar depois
+/*$tsw-hr-map: (
+  dotted:(
+    border-color:         $tsw-primary,
+    border-style:         dashed,
+    max-width:            10%,
+    margin:               3em
+  ),
+
+  dotted:(
+    border-color:         $tsw-primary,
+    border-style:         dashed,
+    max-width:            10%,
+    margin:               3em
+  ),
+);*/
+
+//----------------------------------------------------------------------------------------------------------------------
+//  3.0 - CONFIGURAÇÕES DO PAINEL ADMINISTRATIVO
+//----------------------------------------------------------------------------------------------------------------------
+
+  //  Painel-margin
+$tsw-painel-margin:                     6em;
+
+//  Cor de Fundo, contadores
+$tsw-contadores-map: (
+  azul: (
+    tsw-text-color: $white,
+    tsw-background-color: $tsw-blue
+  ),
+
+  vermelho: (
+    tsw-text-color: $white,
+    tsw-background-color: $tsw-alert
+  ),
+
+  laranja: (
+    tsw-text-color: $white,
+    tsw-background-color: $tsw-warning
+  ),
+
+  violeta: (
+    tsw-text-color: $white,
+    tsw-background-color: $tsw-violet
+  )
+);
+

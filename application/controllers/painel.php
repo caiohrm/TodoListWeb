@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: caio
- * Date: 27/04/2016
- * Time: 16:53
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Painel extends  CI_Controller{
 
@@ -75,11 +70,12 @@ class Painel extends  CI_Controller{
 
 
     }
+    
     public function salvaProgramador()
     {
         $data = array();
 
-        $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]|strtolower');
+        $this->form_validation->set_rules('vnome__programador','NOME','trim|required|min_length[4]');
         $this->form_validation->set_message('is_unique', 'Error Message');
         $this->form_validation->set_rules('vlogin_programador','LOGIN','trim|required|min_length[4]|strtolower|' .
         'is_unique[programador.vlogin_programador]');
@@ -138,6 +134,7 @@ class Painel extends  CI_Controller{
         set_tema('tela','programas');
         load_template();
     }
+
     public function createStatus(){
         set_tema('template','reveal');
         set_tema('tela','status');

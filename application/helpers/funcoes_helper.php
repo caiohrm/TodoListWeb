@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: caio
- * Date: 27/04/2016
- * Time: 17:21
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 //carrega um modulo do sistema devolvendo a tela solicitada
 function load_modulo($modulo=NULL,$tela=NULL,$diretorio='painel'){
@@ -49,16 +44,21 @@ function init_painel(){
 
     set_tema('rodape','');
     set_tema('template','painel_view');
-    set_tema('headerinc',load_css(array('foundation.min',
-                                        'app',
-                                        'jquery.dataTables.min',
-                                        'dataTables.foundation.min',)),FALSE);
-    set_tema('footerinc',load_js(array(
-                                        'jquery-2.2.4',
-                                        'jquery.dataTables.min',
-                                        'foundation.min',
-                                        'app',
-                                        'dataTables.foundation.min')),FALSE);
+    set_tema('loadcss',load_css(array(
+        'foundation.min',
+        'torch.style',
+        'materialdesignicons.min',
+        'app',
+        'datatables.min')),FALSE);
+
+    set_tema('loadjs',load_js(array(
+        'datatables.min',
+        'foundation.min',
+        'app')),FALSE);
+
+    set_tema('loadjquery', load_js(array(
+        'jquery'
+    )));
 }
 
 //carrega um template passando o array $tema como parametro

@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: caio
- * Date: 23/05/2016
- * Time: 10:46
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 echo '<div class="row">';
 echo '<div class="columns medium-4 medium-centered">';
 echo form_dropdown('Usuarios',$dados,'1');

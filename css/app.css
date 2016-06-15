@@ -1,17 +1,17 @@
-.loginform {margin-top: 130px;}
-.alert p{margin: 0 !important;}
-input{ margin: 2px !important;}
-.fieldset {margin-top: 0 !important;}
+.loginform {margin-top: 2em;}
 
+.mdi-1x{
+    font-size: 1.2em;
+}
 
+.mdi-2x{
+    font-size: 2em;
+}
 
 th{
 
     height: 0;
     line-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    color: transparent;
     border: none;
     white-space: nowrap;
     font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;

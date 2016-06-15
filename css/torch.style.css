@@ -1,0 +1,285 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Lato);
+/*$tsw-hr-map: (
+  dotted:(
+    border-color:         $tsw-primary,
+    border-style:         dashed,
+    max-width:            10%,
+    margin:               3em
+  ),
+
+  dotted:(
+    border-color:         $tsw-primary,
+    border-style:         dashed,
+    max-width:            10%,
+    margin:               3em
+  ),
+);*/
+/*
+| Defini├º├Áes Gerais
+| -> Fonte
+| -> Headings
+*/
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: normal;
+  font-style: normal; }
+  body h1, body h2, body h3, body h4, body h5, body h6 {
+    color: #333333;
+    font-family: "Lato", sans-serif; }
+
+/*
+| Estilo ├║nico para t├¡tulos
+| -> Heading
+*/
+.tsw-heading {
+  font-family: "Lato", sans-serif !important;
+  text-transform: uppercase; }
+
+/*
+| Cores, atribui uma cor a um texto ou titulo
+| -> tsw-primary, secondary...
+*/
+.tsw-primary {
+  color: #F58634; }
+
+.tsw-secondary {
+  color: #888888; }
+
+.tsw-third {
+  color: #000; }
+
+.tsw-alert {
+  color: #ff5651; }
+
+.tsw-warning {
+  color: #ff9150; }
+
+.tsw-success {
+  color: #9bd578; }
+
+.tsw-white {
+  color: #FFFFFF; }
+
+.tsw-oil {
+  color: #333333; }
+
+/*
+| Reescrita da Topbar - Foundation
+| -> Topbar
+| -> Menu Dropdown
+*/
+.top-bar {
+  background-color: #2ba6cb;
+  padding: none;
+  text-transform: none; }
+  .top-bar .menu {
+    color: #FFFFFF;
+    background-color: transparent; }
+    .top-bar .menu a {
+      color: #FFFFFF !important;
+      background-color: transparent;
+      transition: 0.5s;
+      text-decoration: none; }
+      .top-bar .menu a:hover {
+        color: #e6e6e6 !important;
+        background-color: transparent;
+        transition: 0.5s;
+        text-decoration: none; }
+  .top-bar .dropdown .menu {
+    background-color: #2ba6cb; }
+
+/*
+| Reescrita de Title Bar - Foundation
+| -> Cor e fundo
+*/
+.title-bar {
+  color: #FFFFFF !important;
+  background-color: #777777 !important; }
+
+/*
+| Custom Link, atribui um estilo a tag a filha, deve ser usado na tag pai.
+| -> Utiliza-se de maps para gerar todas as classes necess├írias
+*/
+.tsw-link-primary a {
+  color: #F58634;
+  transition: 0.5s; }
+  .tsw-link-primary a:hover {
+    color: #ea6a0c;
+    transition: 0.5s; }
+
+.tsw-link-secondary a {
+  color: #888888;
+  transition: 0.5s; }
+  .tsw-link-secondary a:hover {
+    color: #6f6f6f;
+    transition: 0.5s; }
+
+.tsw-link-third a {
+  color: #000;
+  transition: 0.5s; }
+  .tsw-link-third a:hover {
+    color: black;
+    transition: 0.5s; }
+
+.tsw-link-success a {
+  color: #9bd578;
+  transition: 0.5s; }
+  .tsw-link-success a:hover {
+    color: #7ec951;
+    transition: 0.5s; }
+
+.tsw-link-alert a {
+  color: #ff5651;
+  transition: 0.5s; }
+  .tsw-link-alert a:hover {
+    color: #ff241e;
+    transition: 0.5s; }
+
+.tsw-link-warning a {
+  color: #ff9150;
+  transition: 0.5s; }
+  .tsw-link-warning a:hover {
+    color: #ff711d;
+    transition: 0.5s; }
+
+.tsw-link-white a {
+  color: #FFFFFF;
+  transition: 0.5s; }
+  .tsw-link-white a:hover {
+    color: #e6e6e6;
+    transition: 0.5s; }
+
+/*
+| Reescrita do menu Off-Canvas - Foundation
+*/
+.off-canvas {
+  background-color: #F6F6F6;
+  height: 100%;
+  color: black; }
+
+/*
+| Reescrita da classe thumbnails - Foundation
+*/
+.thumbnail {
+  border: solid 4px #FFFFFF !important;
+  box-shadow: 0 0 0 1px rgba(245, 134, 52, 0.2) !important;
+  transition: box-shadow 200ms ease-out !important; }
+  .thumbnail:hover, .thumbnail:focus {
+    box-shadow: 0 0 6px 1px rgba(245, 134, 52, 0.5) !important; }
+
+.text-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 0; }
+
+.text-overlay-wrapper {
+  margin-top: 135px; }
+
+.solid-hr {
+  border: 2px solid #F58634;
+  max-width: 10%; }
+
+.dotted {
+  border-color: #F58634;
+  border-style: dashed;
+  max-width: 10%;
+  margin: 3em 0; }
+
+/*
+| Estilo para o ID tsw-offcanvas-head
+| -> Utilizado no menu da Torch.
+*/
+#tsw-offcanvas-head {
+  margin-top: 6em; }
+
+.tsw-vertical-color {
+  background-color: #F6F6F6; }
+
+/*
+| Gera as classes tsw-contador, utilizado no menu da Torch, juntamente com os callouts
+*/
+.tsw-contador-azul {
+  color: #FFFFFF !important;
+  background-color: #2ba6cb;
+  border: none; }
+
+.tsw-contador-vermelho {
+  color: #FFFFFF !important;
+  background-color: #ff5651;
+  border: none; }
+
+.tsw-contador-laranja {
+  color: #FFFFFF !important;
+  background-color: #ff9150;
+  border: none; }
+
+.tsw-contador-violeta {
+  color: #FFFFFF !important;
+  background-color: #b856ff;
+  border: none; }
+
+#tsw-banner {
+  padding: 15em 0;
+  background-image: url("../img/banner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+#tsw-icones {
+  padding: 6em 0; }
+
+#tsw-sobre {
+  padding: 6em 0;
+  background-color: #F6F6F6; }
+
+#tsw-works {
+  padding: 6em 0;
+  background-color: #F58634; }
+
+#tsw-blog {
+  padding: 6em 0; }
+
+#tsw-contato {
+  padding: 6em 0 0 0;
+  background-color: #333333; }
+
+#tsw-footer {
+  padding: 2em 0 1em 0;
+  background-color: #000; }
+
+.tsw-icons-background-1 {
+  color: #FFFFFF;
+  background-color: #F58634;
+  padding: 30px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: 0.7s; }
+  .tsw-icons-background-1:hover {
+    color: #e6e6e6;
+    background-color: #ea6a0c;
+    padding: 30px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: 0.7s; }
+
+.tsw-icons-background-2 {
+  color: #FFFFFF;
+  background-color: #F58634;
+  padding: 30px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: 0.7s; }
+  .tsw-icons-background-2:hover {
+    color: #e6e6e6;
+    background-color: #ea6a0c;
+    padding: 30px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: 0.7s; }
+
+/*# sourceMappingURL=torch.style.css.map */

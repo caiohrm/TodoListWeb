@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: caio
- * Date: 29/04/2016
- * Time: 10:45
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuarios_model extends CI_Model{
 
@@ -13,9 +8,9 @@ public function do_login($usuario=NULL,$senha=NULL){
     if($usuario != null && $senha!=null):
         $this->db->where('vlogin_programador',$usuario);
         $this->db->where('vsenha_programador',$senha);
-        $this->db->where('cstatusprogramador',1);
+        // $this->db->where('cstatusprogramador',1);
         $query = $this->db->get('programador');
-        return $query->num_rows()==1;
+        return $query->num_rows()>=1;
     else:
        return false;
     endif;

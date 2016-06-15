@@ -20,7 +20,6 @@ switch ($tela):
         echo form_password(array('name'=>'senha'),set_value('senha'));
         echo '<div class="row">';
         echo '<div class="columns medium-8">';
-        echo '<p>'.anchor('usuarios/nova_senha','Esqueci minha senha').'</p>';
         echo '</div>';
         echo '<div class="columns medium-4 text-right">';
         echo form_submit(array('name'=>'logar','class'=> 'button radius right'),'Login');

@@ -8,7 +8,10 @@ public function do_login($usuario=NULL,$senha=NULL){
     if($usuario != null && $senha!=null):
         $this->db->where('vlogin_programador',$usuario);
         $this->db->where('vsenha_programador',$senha);
+<<<<<<< HEAD
         // $this->db->where('cstatusprogramador',1);
+=======
+>>>>>>> refs/remotes/origin/master
         $query = $this->db->get('programador');
         return $query->num_rows()>=1;
     else:
@@ -102,8 +105,8 @@ public function do_login($usuario=NULL,$senha=NULL){
                                         'vdescritodolist, '.
                                         'vnome____programa, '.
                                         'vnome__programador,'.
-                                       'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\') as dprazo_todolist, '.
-                                       //'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
+                                       //'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\') as dprazo_todolist, '.
+                                       'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
                                         'stu.vdescristatus,'.
                                         'nstate_todolist '.
                                 'FROM todolist AS todo, '.

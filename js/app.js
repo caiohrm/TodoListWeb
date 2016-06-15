@@ -189,7 +189,7 @@ function salvaAtividade() {
     var titulo = $("#vtitulotodolist").val();
     var descricao = $("#vdescritodolist").val();
     var id = $("#idtarefa").val();
-    alert(id);
+    alert(descricao);
     if(id == null)
         id=-1;
     $.ajax({
@@ -214,6 +214,7 @@ function salvaAtividade() {
                 $("#errossa").html('').append("<div class='callout success'>Atividade adicionada com succeso</div>");
                 LimpaCampos();
                 CarregaDatabase();
+                $('#atividade').foundation('close');
             } else {
                 $("#errossa").html('').append("<div class='alert callout'>" + data.message + "</div>");
             }

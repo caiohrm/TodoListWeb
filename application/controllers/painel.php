@@ -46,6 +46,7 @@ class Painel extends  CI_Controller{
             $nid____todolist = $_POST["nid____todolist"];
         $this->form_validation->set_rules('vtitulotodolist','NOME','trim|required|min_length[4]|strtolower');
         $this->form_validation->set_rules('vdescritodolist','NOME','trim|required|min_length[4]|strtolower');
+        $descricao = $this->input->post('vdescritodolist');
         if($this->form_validation->run()) {
             $dados = elements(array('nid____programador',
                                     'nid____programa',
@@ -53,6 +54,7 @@ class Painel extends  CI_Controller{
                                     'dprazo_todolist',
                                     'vtitulotodolist',
                                     'vdescritodolist'), $this->input->post());
+            $dados['vdescritodolist']=$descricao;
             $this->usuarios->insert_atividade($dados,$nid____todolist);
             $dados = array();
             $valores=  $this->usuarios->get_tarefas()->result();

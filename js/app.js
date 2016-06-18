@@ -213,14 +213,8 @@ function salvaAtividade() {
     var titulo = $("#vtitulotodolist").val();
     var descricao = $("#vdescritodolist").val();
     var id = $("#idtarefa").val();
-<<<<<<< HEAD
-    if (id == null)
-        id = -1;
-=======
-    alert(descricao);
     if(id == null)
         id=-1;
->>>>>>> refs/remotes/origin/master
     $.ajax({
             type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url: 'painel/salvaAtividade', // the url where we want to POST
@@ -287,7 +281,6 @@ function CarregaAtividade() {
 
 function CarregaCombosAtividade() {
     $.ajax({
-<<<<<<< HEAD
             type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url: 'painel/Carredados', // the url where we want to POST
             dataType: 'json', // what type of data do we expect back from the server
@@ -296,15 +289,6 @@ function CarregaCombosAtividade() {
         // using the done promise callback
         .done(function (data) {
             console.log(data);
-=======
-        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'painel/Carredados', // the url where we want to POST
-        dataType    : 'json', // what type of data do we expect back from the server
-        encode      : true
-    })
-    // using the done promise callback
-        .done(function(data) {
->>>>>>> refs/remotes/origin/master
             var select = document.getElementsByName("nid____programador");
             removeCampos(select);
             adiciona(data.programador, select);
@@ -320,7 +304,6 @@ function CarregaCombosAtividade() {
 
 function CarregaTarefa(id) {
     $.ajax({
-<<<<<<< HEAD
             type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url: 'painel/CarregaTarefa', // the url where we want to POST
             dataType: 'json', // what type of data do we expect back from the server
@@ -330,16 +313,6 @@ function CarregaTarefa(id) {
         // using the done promise callback
         .done(function (data) {
             console.log(data);
-=======
-        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'painel/CarregaTarefa', // the url where we want to POST
-        dataType    : 'json', // what type of data do we expect back from the server
-        encode      : true,
-        data        : {nid____todolist:id}
-    })
-    // using the done promise callback
-        .done(function(data) {
->>>>>>> refs/remotes/origin/master
             var select = document.getElementsByName("nid____programador")[0];
             select.value = data.message[0][1];
             select = document.getElementsByName("nid____programa")[0];
@@ -353,23 +326,12 @@ function CarregaTarefa(id) {
             select = document.getElementById("vdescritodolist");//id
             select.value = data.message[0][4];
             select = document.getElementById("dtlancamtodolist");//id
-<<<<<<< HEAD
             select.valueAsDate = data.message[0][7];
             select = document.getElementById("idtarefa");
             if (data.message[0][0] != null) {
                 select.value = data.message[0][0];
                 $('#atividade').foundation('open');
                 console.log(data.message[0][0]);
-
-=======
-            select.valueAsDate=data.message[0][7];
-            select = document.getElementById("idtarefa");//id
-            if(data.message[0][0] != null)
-            {
-                select.value=data.message[0][0];
-                $('#atividade').foundation('open');
-                console.log(data.message[0][0]);
->>>>>>> refs/remotes/origin/master
             }
         });
 }
@@ -377,7 +339,6 @@ function CarregaTarefa(id) {
 
 function CarregaCombos() {
     $.ajax({
-<<<<<<< HEAD
             type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url: 'painel/Carredados', // the url where we want to POST
             dataType: 'json', // what type of data do we expect back from the server
@@ -386,15 +347,6 @@ function CarregaCombos() {
         // using the done promise callback
         .done(function (data) {
             console.log(data);
-=======
-        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'painel/Carredados', // the url where we want to POST
-        dataType    : 'json', // what type of data do we expect back from the server
-        encode      : true
-    })
-    // using the done promise callback
-        .done(function(data) {
->>>>>>> refs/remotes/origin/master
             var select = document.getElementsByName("programador");
             removeCampos(select);
             adiciona(data.programador, select);

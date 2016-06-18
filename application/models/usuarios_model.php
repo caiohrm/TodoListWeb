@@ -8,10 +8,6 @@ public function do_login($usuario=NULL,$senha=NULL){
     if($usuario != null && $senha!=null):
         $this->db->where('vlogin_programador',$usuario);
         $this->db->where('vsenha_programador',$senha);
-<<<<<<< HEAD
-        // $this->db->where('cstatusprogramador',1);
-=======
->>>>>>> refs/remotes/origin/master
         $query = $this->db->get('programador');
         return $query->num_rows()>=1;
     else:

@@ -101,8 +101,8 @@ public function do_login($usuario=NULL,$senha=NULL){
                                         'vdescritodolist, '.
                                         'vnome____programa, '.
                                         'vnome__programador,'.
-                                       //'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\') as dprazo_todolist, '.
-                                       'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
+                                       'DATE_FORMAT(dprazo_todolist,\' %d/%m/%Y\') as dprazo_todolist, '.
+                                       //'to_char(dprazo_todolist, \'DD/MM/YYYY\') as dprazo_todolist,'.
                                         'stu.vdescristatus,'.
                                         'nstate_todolist '.
                                 'FROM todolist AS todo, '.
@@ -112,7 +112,7 @@ public function do_login($usuario=NULL,$senha=NULL){
                                 'WHERE '.
                                         '(0='.$programador.' or todo.nid____programador = '.$programador.') AND  '.
                                         '(0='.$projetos.' or todo.nid____programa = '.$projetos.') AND'.
-                                        '(0='.$status.' or todo.nstate_todolist = '.$status.') AND '.
+                                        '((0='.$status.' and todo.nstate_todolist !=3)   or todo.nstate_todolist = '.$status.') AND '.
                                         'pro.nid____programador = todo.nid____programador AND '.
                                         'todo.nid____programa=grama.nid____programa AND '.
                                         'todo.nstate_todolist=stu.nid____status '.
